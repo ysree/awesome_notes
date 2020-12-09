@@ -41,7 +41,7 @@
   - Advanced Policy Specification
   - GitOps-Friendly
 
-**Ingress Controllers**
+### Ingress Controllers
 
 1)  **NGINX-Powered Ingress Controllers**
     - NGINX Ingress Controller
