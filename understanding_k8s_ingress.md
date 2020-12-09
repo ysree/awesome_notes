@@ -1,4 +1,4 @@
-# Understanding Kubernetes Ingress
+# Understanding K8s ServiceType, Ingress & Ingress Controller
 
 * **Kubernetes Ingress** - Kubernetes ingress is a collection of routing rules that govern how external users access services running in a Kubernetes cluster.
 
