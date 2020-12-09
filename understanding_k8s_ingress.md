@@ -79,7 +79,28 @@
 5)  **Other Ingress Controllers**
     - AWS ALB Ingress Controller
     - Citrix Ingress Controller
-    
+
+----
+## Which one should I use?
+  Well, that’s the one million dollar question, and one which will probably elicit a different response depending on who you ask!
+
+  You could go 100% LoadBalancer, getting an individual LoadBalancer for each service. Conceptually, it’s simple: every service is independent, with no extra configuration needed. The downside is the price (you will be paying for one LoadBalancer per service), and also the difficulty of managing lots of different IPs.
+
+  You could also use only one LoadBalancer and an Ingress behind it. All your services would be under the same IP, each one in a different path. It’s a cheaper approach, as you only pay for one LoadBalancer, but if your services don’t have a logical relationship, it can quickly become chaotic.
+
+  If you want my personal opinion, I would try to use a combination of the two…
+
+  An approach I like is having a LoadBalancer for every related set of services, and then routing to those services using an Ingressbehind the  LoadBalancer. For example, let’s say you have two different microservice-based APIs, each one with around 10 services. I would put one LoadBalancer in front of one Ingress for each API, the LoadBalancerbeing the single public entry-point, and theIngress routing traffic to the API’s different services.
+
+  But if your architecture is quite complex (especially if you’re using microservices), you will soon find that manually managing everything with LoadBalancer and Ingress is  rather  cumbersome. If that’s the case, the answer could be to delegate those tasks to a service mesh…
+  
+#### What’s a service mesh?
+  You may have heard of Istio or Linkerd, and how they make it easier to build microservice architectures on Kubernetes, adding nifty perks like A/B testing, canary releases, rate limiting, access control, and end-to-end authentication.
+
+  Istio, Linkerd, and similar tools are service meshes, which allow you to build networks of microservices and define their interactions, while simultaneously adding some high-value features that make the setup and operation of microservice-based architectures easier.
+
+  There’s a lot to talk about when it comes to using service meshes on Kubernetes, but as they say, that’s a story for another time…
+
 ----
 ##### This notes is for learning purpose
 **Referance**
