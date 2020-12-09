@@ -90,12 +90,12 @@
 
   If you want my personal opinion, I would try to use a combination of the two…
 
-  An approach I like is having a *LoadBalancer* for every related set of services, and then routing to those services using an Ingressbehind the  LoadBalancer. For example, let’s say you have two different microservice-based APIs, each one with around 10 services. I would put one LoadBalancer in front of one Ingress for each API, the LoadBalancerbeing the single public entry-point, and theIngress routing traffic to the API’s different services.
+  An approach I like is having a LoadBalancer for every related set of services, and then routing to those services using an Ingress behind the LoadBalancer. For example, let’s say you have two different microservice-based APIs, each one with around 10 services. I would put one LoadBalancer in front of one Ingress for each API, the LoadBalancer being the single public entry-point, and theIngress routing traffic to the API’s different services.
 
   But if your architecture is quite complex (especially if you’re using microservices), you will soon find that manually managing everything with LoadBalancer and Ingress is  rather  cumbersome. If that’s the case, the answer could be to delegate those tasks to a service mesh…
   
 #### What’s a service mesh?
-  You may have heard of Istio or Linkerd, and how they make it easier to build microservice architectures on Kubernetes, adding nifty perks like A/B testing, canary releases, rate limiting, access control, and end-to-end authentication.
+  You may have heard of **Istio** or **Linkerd**, and how they make it easier to build microservice architectures on Kubernetes, adding nifty perks like A/B testing, canary releases, rate limiting, access control, and end-to-end authentication.
 
   Istio, Linkerd, and similar tools are service meshes, which allow you to build networks of microservices and define their interactions, while simultaneously adding some high-value features that make the setup and operation of microservice-based architectures easier.
 
