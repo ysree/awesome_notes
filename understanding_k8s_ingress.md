@@ -60,5 +60,6 @@
     
 ----
 ##### This notes is for learning purpose
-courtesy - https://www.getambassador.io/learn/kubernetes-ingress/
-youtube - https://www.youtube.com/watch?v=GhZi4DxaxxE
+**Referance**
+- courtesy - https://www.getambassador.io/learn/kubernetes-ingress/
+- youtube - https://www.youtube.com/watch?v=GhZi4DxaxxE
