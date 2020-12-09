@@ -24,3 +24,10 @@
 3)  **Envoy-Powered Ingress Controllers**
     - Ambassador Edge Stack
     - Istio Gateway
+3)  **Custom Proxy Ingress Controllers**
+    - Traefik
+    - Skipper
+3)  **Other Ingress Controllers**
+    - AWS ALB Ingress Controller
+    - Citrix Ingress Controller
+    
