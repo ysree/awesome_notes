@@ -18,8 +18,18 @@
     - Every Service that you deploy as LoadBalancer will get it’s own IP.
     - The LoadBalancer is usually billed based on the number of exposed services, which can be expensive.
     
-<img src="https://user-images.githubusercontent.com/1214953/101643971-aedb3000-3a5a-11eb-90cb-08aa872b4f53.jpeg" width="400" height="250" />
+<img src="https://user-images.githubusercontent.com/1214953/101643971-aedb3000-3a5a-11eb-90cb-08aa872b4f53.jpeg" width="250" height="400" />
 
+* **Ingress** - According to the official documentation, an Ingress is an API object that manages external access to the services in a cluster (typically HTTP). So what’s the difference between this and LoadBalancer or NodePort?
+
+  Ingress isn’t a type of Service, but rather an object that acts as a reverse proxy and single entry-point to your cluster that routes the request to different services. The most basic Ingress is the NGINX Ingress Controller, where the NGINX takes on the role of reverse proxy, while also functioning as SSL.
+  
+<img src="https://user-images.githubusercontent.com/1214953/101645355-4b520200-3a5c-11eb-9c40-31ce73a26c27.png" width="250" height="400" />
+
+  Ingress is exposed to the outside of the cluster via ClusterIP and Kubernetes proxy, NodePort, or LoadBalancer, and routes incoming traffic according to the configured rules.
+  
+<img src="https://user-images.githubusercontent.com/1214953/101645589-8d7b4380-3a5c-11eb-8d1e-d9bf479dd00a.png" width="250" height="400" />
+  
 * **Ingress Controllers** - Kubernetes supports a high level abstraction called Ingress, which allows simple host or URL based HTTP routing. An ingress controller is responsible for reading the Ingress Resource information and processing that data accordingly
 
 ## Ingress Controller/Edge Proxy/L7 proxy
