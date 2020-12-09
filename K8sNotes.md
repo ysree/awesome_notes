@@ -25,14 +25,17 @@
   - Authentication
   - Rate Limiting
   - WAF Integration
+
 **Availability**
   - Different Load Balancing Algorithms
   - Circuit Breakers
   - Timeouts
   - Automatic Retries
+
 **Progressive Delivery**
   - Canary Releases
   - Traffic Shadowing
+
 **Self-Service Configuration**
   - Declarative Configuration
   - Advanced Policy Specification
