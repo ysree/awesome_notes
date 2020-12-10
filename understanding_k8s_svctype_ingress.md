@@ -20,7 +20,7 @@
     
 <img src="https://user-images.githubusercontent.com/1214953/101643971-aedb3000-3a5a-11eb-90cb-08aa872b4f53.jpeg" width="250" height="400" />
 
-* **Ingress** - According to the official documentation, an Ingress is an API object that manages external access to the services in a cluster (typically HTTP). So what’s the difference between this and LoadBalancer or NodePort?
+* **Ingress** - According to the official documentation, an Ingress is an API object that manages external access to the services in a cluster (typically HTTP). In simple terms, the Ingress works as a **reverse proxy** or a **load balancer**. So what’s the difference between this and LoadBalancer or NodePort?
 
   Ingress isn’t a type of Service, but rather an object that acts as a reverse proxy and single entry-point to your cluster that routes the request to different services. The most basic Ingress is the NGINX Ingress Controller, where the NGINX takes on the role of reverse proxy, while also functioning as SSL.
   
