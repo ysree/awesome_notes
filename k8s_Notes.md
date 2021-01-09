@@ -41,4 +41,9 @@ node01         Ready    <none>   2m8s    v1.19.0   172.17.0.29   <none>        U
 ###### Deployment rollback to specific version. 
 `$ kubectl rollout undo deployment/deployment-name --to-revision=3`
 
+###### Scale Deployment replicas
+`$ kubectl scale deployment nginx --replicas=4`
+
+##### Deployment with replicase using imparative
+`$ kubectl create deployment webapp --image=kodekloud/webapp-color --replicas=3 --dry-run=client -o yaml > webapp-deployment.yaml`
 
