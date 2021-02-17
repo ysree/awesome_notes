@@ -170,3 +170,7 @@ cmdline() {
 * Beginner mistakes [http://wiki.bash-hackers.org/scripting/newbie_traps](http://wiki.bash-hackers.org/scripting/newbie_traps)
 * Advanced Bash-Scripting Guide [http://tldp.org/LDP/abs/html/](http://tldp.org/LDP/abs/html/)
 * Google's Bash styleguide [http://google-styleguide.googlecode.com/svn/trunk/shell.xml](http://google-styleguide.googlecode.com/svn/trunk/shell.xml)
+
+
+### Reference
+https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
