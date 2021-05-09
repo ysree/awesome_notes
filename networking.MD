@@ -22,8 +22,6 @@ iptables --append FORWARD --in-interface ens192 -j ACCEPT
 
 ## Adding routes in Linux 
 ```
-route add -net 192.168.185.0/24 gw 30.30.30.2 dev ens192
-route add -net 192.168.186.0/24 gw 30.30.30.2 dev ens192
 route add -net 192.168.195.0/24 gw 30.30.30.2 dev ens192
 route add -net 192.168.196.0/24 gw 30.30.30.2 dev ens192
 ```
