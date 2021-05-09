@@ -13,3 +13,17 @@ firewall-cmd --direct --add-rule ipv4 filter DOCKER-ISOLATION 0 -s <wordpress_db
 firewall-cmd --direct --add-rule ipv4 filter DOCKER-ISOLATION 2 -s <wordpress_db_ip> -j DROP
 firewall-cmd --direct --add-rule ipv4 filter DOCKER-ISOLATION 2 -s <honeypot_php_ip> -j DROP
 ```
+
+## IP Tables Natting & Forwarding between Interfaces
+```
+iptables --table nat --append POSTROUTING --out-interface ens160 -j MASQUERADE
+iptables --append FORWARD --in-interface ens192 -j ACCEPT
+```
+
+## Adding routes in Linux 
+```
+route add -net 192.168.185.0/24 gw 30.30.30.2 dev ens192
+route add -net 192.168.186.0/24 gw 30.30.30.2 dev ens192
+route add -net 192.168.195.0/24 gw 30.30.30.2 dev ens192
+route add -net 192.168.196.0/24 gw 30.30.30.2 dev ens192
+```
