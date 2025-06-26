@@ -183,6 +183,12 @@ Affinity and node affinity rules help control where pods are scheduled within th
 
 This configuration ensures that the `example-pod` is scheduled only on nodes with the hostname `node-1` or `node-2`, optimizing resource allocation based on node characteristics.
 
+**Use Case**
+For example, you may want to schedule GPU workloads only on nodes labeled with **gpu=true**, or ensure that frontend and backend pods are co-located for performance reasons.
+
+Suppose you have nodes labeled with **disktype=ssd** for high-performance storage. You want your database pods to run only on these nodes.
+
+
 10. Taints and Tolerations
 
 Taints and tolerations allow you to control which pods can be scheduled on specific nodes, helping to optimize resource usage and ensure that critical workloads are not disrupted by less important ones.
@@ -190,28 +196,31 @@ Taints and tolerations allow you to control which pods can be scheduled on speci
     apiVersion: v1
     kind: Node
     metadata:
-    name: example-node
+    name: db-node-1
     spec:
     taints:
-    - key: "example-key"
-        value: "example-value"
+    - key: "dedicated"
+        value: "database"
         effect: NoSchedule
     ---
     apiVersion: v1
     kind: Pod
     metadata:
-    name: example-pod
+    name: postgres-db
     spec:
     tolerations:
-    - key: "example-key"
+    - key: "dedicated
         operator: "Equal"
-        value: "example-value"
+        value: "database"
         effect: "NoSchedule"
     containers:
-    - name: example-container
-        image: example/image
+    - name: postgres
+        image: postgres:latest
 
-This configuration applies a taint to the `example-node`, preventing any pods from being scheduled on it unless they have a matching toleration. The `example-pod` has a toleration for the taint, allowing it to be scheduled on the tainted node.
+This configuration applies a taint to the `db-node-1`, preventing any pods from being scheduled on it unless they have a matching toleration. The `postgres-db` has a toleration for the taint, allowing it to be scheduled on the tainted node.
+
+**Use Case:
+Suppose you have a node group with high-performance hardware intended only for database workloads. You can taint these nodes:
 
 11. Utilize Pod Disruption Budgets (PDBs)
 
