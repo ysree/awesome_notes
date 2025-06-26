@@ -131,6 +131,7 @@ This configuration creates two separate namespaces, `team-a` and `team-b`, allow
 
 - Implement role-based access control (RBAC) to ensure secure access control.
 - Use namespaces to isolate resources and manage quotas effectively.
+
 8.Implement Network Policies
 
 Network policies control the traffic flow between pods, enhancing security and potentially reducing costs by limiting unnecessary network traffic. By defining clear ingress and egress rules, you can optimize network usage.
@@ -156,6 +157,7 @@ Network policies control the traffic flow between pods, enhancing security and p
             port: 80
 
 This configuration allows only pods with the label `role: backend` to communicate with pods labeled `role: frontend` on port 80, effectively controlling the traffic flow and enhancing security.
+
 9. Affinity and Node Affinity
 
 Affinity and node affinity rules help control where pods are scheduled within the cluster, optimizing resource usage and potentially reducing costs by ensuring that workloads are placed on the most appropriate nodes.
@@ -210,6 +212,7 @@ Taints and tolerations allow you to control which pods can be scheduled on speci
         image: example/image
 
 This configuration applies a taint to the `example-node`, preventing any pods from being scheduled on it unless they have a matching toleration. The `example-pod` has a toleration for the taint, allowing it to be scheduled on the tainted node.
+
 11. Utilize Pod Disruption Budgets (PDBs)
 
 Pod Disruption Budgets (PDBs) help ensure that a certain number of pods remain available during voluntary disruptions, such as node maintenance or scaling operations. This can help maintain application availability and prevent unnecessary costs due to downtime.
@@ -225,6 +228,7 @@ Pod Disruption Budgets (PDBs) help ensure that a certain number of pods remain a
             app: example-application
 
 This configuration ensures that at least 2 pods of the `example-application` remain available during voluntary disruptions, helping to maintain application availability and reduce costs associated with downtime.
+
 12. Monitor and Analyze Resource Usage
 
 Regularly monitoring and analyzing resource usage is crucial for optimizing costs in Kubernetes. By using tools like Prometheus, Grafana, or Kubernetes Metrics Server, you can gain insights into resource utilization patterns and identify areas for optimization.
@@ -246,6 +250,7 @@ This configuration sets up a ServiceMonitor to scrape metrics from the `example-
 - Set up alerts for high resource usage or anomalies to proactively address issues.
 - Use dashboards to visualize resource utilization trends and identify optimization opportunities.
 - Regularly review and adjust resource requests and limits based on actual usage patterns.
+
 13. Use Cost Management Tools
 
 Utilizing cost management tools can help you gain visibility into your Kubernetes spending and identify areas for optimization. Tools like Kubecost, CloudHealth, or native cloud provider cost management solutions can provide insights into resource usage and costs associated with your Kubernetes workloads.
@@ -263,6 +268,7 @@ This configuration sets up a cost model for the `example-cluster` in the `kubeco
 - Regularly review cost reports to identify high-cost resources or workloads.
 - Set budgets and alerts to monitor spending and prevent unexpected costs.
 - Use tagging and labeling to categorize resources for better cost allocation and analysis.
+
 14. Implement Efficient Logging and Monitoring
 
 Efficient logging and monitoring can help you identify performance bottlenecks and optimize resource usage. By using tools like Fluentd, Elasticsearch, and Kibana (EFK stack) or Loki and Grafana, you can centralize logs and metrics for better visibility into your Kubernetes workloads.
