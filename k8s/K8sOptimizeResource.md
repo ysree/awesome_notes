@@ -78,6 +78,7 @@ The Vertical Pod Autoscaler (VPA) automatically adjusts the resource requests an
         updateMode: "Auto"
 
 This configuration sets up a VPA for the `example-application` deployment, which will automatically adjust the resource requests and limits based on the observed usage patterns.
+
 5. Leverage Horizontal Pod Autoscaling
 
 Horizontal Pod Autoscaling (HPA) automatically scales the number of pod replicas in a deployment based on observed CPU utilization or other select metrics. This ensures that your application can handle varying loads without manual intervention.
@@ -102,6 +103,7 @@ Horizontal Pod Autoscaling (HPA) automatically scales the number of pod replicas
             averageUtilization: 50
 
 This configuration sets up an HPA for the `example-application` deployment, scaling the number of replicas between 2 and 10 based on CPU utilization, aiming to maintain an average CPU usage of 50%.
+
 6. Optimize Storage Costs
 
 Persistent storage can be a significant part of your Kubernetes costs. By optimizing your storage strategy, such as using appropriate storage classes and dynamically provisioning storage only as needed, you can reduce costs.
