@@ -9,10 +9,10 @@ LoadBalancder Notes
     - **Software Load Balancers**: These are applications that run on standard servers and can be deployed in various configurations. They are typically more flexible and cost-effective than hardware-based load balancers but may not provide the same level of performance or reliability.
     - **Cloud Load Balancers:** These are load balancers that are provided as a service by cloud providers. They can be easily scaled up or down depending on the needs of the application or service being supported.
 
-    - ![Cloud Load Balancer](https://pbs.twimg.com/media/Gmx9w1TbwAAs2Ag?format=jpg&name=large)
+    - ![Cloud Load Balancer](CloudLoadBalancerCheetSheet.jpeg)
 
 3. **Load Balancing Algorithms**
-    Image: ![Load Balancing Algorithms](https://miro.medium.com/v2/resize:fit:720/format:webp/1*qno9hrVrq2GsWxT249kQvg.gif)
+    - ![Load Balancing Algorithms](LoadBalancerAlgos.gif)
 
     - **Round Robin:** This algorithm distributes traffic evenly across all servers in a circular order. Each server receives an equal number of requests over time.
     - **Least Connections:** This algorithm directs traffic to the server with the fewest active connections. This helps to ensure that no single server becomes overwhelmed with too much traffic.
