@@ -4,7 +4,7 @@
 
 <img src="https://user-images.githubusercontent.com/1214953/101633900-f14a4000-3a4d-11eb-88d3-f541b9c89375.png" width="400" height="250" />
 
-* **ClusterIP** - The default Kubernetes ServiceType is ClusterIp. ClusterIp exposesthe Service on a cluster-internal IP. To reach the ClusterIp from an external source, you can open a Kubernetes proxy between the external source and the cluster. You can use kubectl to create such a proxy. When the proxy is up, you’re directly connected to the cluster, and you can use the internal IP (ClusterIp) for thatService. This method isn’t suitable for a production environment, but it’s useful for development, debugging, and other quick-and-dirty operations.
+* **ClusterIP** - The default Kubernetes ServiceType is ClusterIp. ClusterIp exposes the Service on a cluster-internal IP. To reach the ClusterIp from an external source, you can open a Kubernetes proxy between the external source and the cluster. You can use kubectl to create such a proxy. When the proxy is up, you’re directly connected to the cluster, and you can use the internal IP (ClusterIp) for thatService. This method isn’t suitable for a production environment, but it’s useful for development, debugging, and other quick-and-dirty operations.
 
 <img src="https://user-images.githubusercontent.com/1214953/101642988-a8988400-3a59-11eb-99ba-f8a168a1d1e6.jpeg" width="300" height="400" />
 

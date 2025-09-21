@@ -25,23 +25,88 @@
 
 ---
 
-## 📊 Status Codes (Common)  
-- **1xx Informational** → Request received (e.g., 100 Continue).  
-- **2xx Success** → Request successful.  
-  - 200 OK → Success  
-  - 201 Created → Resource created  
-- **3xx Redirection** → Further action needed.  
-  - 301 Moved Permanently  
-  - 302 Found (temporary redirect)  
-- **4xx Client Error** → Issue with request.  
-  - 400 Bad Request  
-  - 401 Unauthorized  
-  - 403 Forbidden  
-  - 404 Not Found  
-- **5xx Server Error** → Server failed to process request.  
-  - 500 Internal Server Error  
-  - 502 Bad Gateway  
-  - 503 Service Unavailable  
+# HTTP Status Codes
+
+HTTP status codes are **three-digit codes returned by a server** to indicate the **result of a client’s request**.  
+They are grouped into **five categories**.
+
+---
+
+## 1. Informational (1xx)
+- **Meaning:** Request received, continuing process.  
+- **Common Codes:**
+  - **100 Continue** – Client should continue sending the request.  
+  - **101 Switching Protocols** – Server agrees to change protocols (e.g., HTTP → WebSocket).  
+
+---
+
+## 2. Success (2xx)
+- **Meaning:** Request successfully processed.  
+- **Common Codes:**
+  - **200 OK** – Request succeeded; response contains requested data.  
+  - **201 Created** – Resource successfully created (e.g., POST).  
+  - **202 Accepted** – Request accepted but not yet processed.  
+  - **204 No Content** – Request succeeded but no content to return.  
+
+---
+
+## 3. Redirection (3xx)
+- **Meaning:** Further action needed to complete the request.  
+- **Common Codes:**
+  - **301 Moved Permanently** – Resource permanently moved to a new URL.  
+  - **302 Found** – Temporary redirect.  
+  - **304 Not Modified** – Resource has not changed; use cached version.  
+
+---
+
+## 4. Client Errors (4xx)
+- **Meaning:** Client made a bad request.  
+- **Common Codes:**
+  - **400 Bad Request** – Malformed syntax or invalid request.  
+  - **401 Unauthorized** – Authentication required or failed.  
+  - **403 Forbidden** – Server refuses to fulfill request.  
+  - **404 Not Found** – Resource does not exist.  
+  - **405 Method Not Allowed** – HTTP method not supported for resource.  
+  - **429 Too Many Requests** – Client sent too many requests in a given time.  
+
+---
+
+## 5. Server Errors (5xx)
+- **Meaning:** Server failed to fulfill a valid request.  
+- **Common Codes:**
+  - **500 Internal Server Error** – Generic server error.  
+  - **501 Not Implemented** – Server does not support requested functionality.  
+  - **502 Bad Gateway** – Invalid response from upstream server.  
+  - **503 Service Unavailable** – Server overloaded or down for maintenance.  
+  - **504 Gateway Timeout** – Upstream server did not respond in time.  
+
+---
+
+## Summary Table
+
+| Code | Category          | Meaning                        |
+|------|-----------------|--------------------------------|
+| 100  | Informational    | Continue                       |
+| 101  | Informational    | Switching Protocols            |
+| 200  | Success          | OK                             |
+| 201  | Success          | Created                        |
+| 202  | Success          | Accepted                       |
+| 204  | Success          | No Content                     |
+| 301  | Redirection      | Moved Permanently              |
+| 302  | Redirection      | Found                          |
+| 304  | Redirection      | Not Modified                   |
+| 400  | Client Error     | Bad Request                    |
+| 401  | Client Error     | Unauthorized                   |
+| 403  | Client Error     | Forbidden                      |
+| 404  | Client Error     | Not Found                      |
+| 405  | Client Error     | Method Not Allowed             |
+| 429  | Client Error     | Too Many Requests              |
+| 500  | Server Error     | Internal Server Error          |
+| 501  | Server Error     | Not Implemented                |
+| 502  | Server Error     | Bad Gateway                    |
+| 503  | Server Error     | Service Unavailable            |
+| 504  | Server Error     | Gateway Timeout                |
+
 
 ---
 

@@ -63,9 +63,9 @@
 - **TCP/IP = 4 layers (practical, used on the Internet)**
 
 ## 👉 Diagram
-![Load Balancing Architecture](The-logical-mapping-between-OSI-basic-reference-model-and-the-TCP-IP-stack.png)
+![Load Balancing Architecture](images/The-logical-mapping-between-OSI-basic-reference-model-and-the-TCP-IP-stack.png)
 
-![OSI Model](osi_model.png)
+![OSI Model](images/osi_model.png)
 
 
 ---

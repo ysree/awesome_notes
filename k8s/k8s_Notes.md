@@ -47,3 +47,28 @@ node01         Ready    <none>   2m8s    v1.19.0   172.17.0.29   <none>        U
 ##### Deployment with replicase using imparative
 `$ kubectl create deployment webapp --image=kodekloud/webapp-color --replicas=3 --dry-run=client -o yaml > webapp-deployment.yaml`
 
+
+## Difference between API Gatewau & Service Mesh
+**API gateways** are for north-south traffic, **service meshes** are for east-west.
+
+## Taints and Tolerations
+- **Taints:** are applied to a node to mark it as undesirable for certain pods. 
+- **Tolerations**: are applied to a pod to allow the scheduler to place it on a tainted node. 
+- **Purpose:** To prevent pods that are not meant to run on a specific node from being scheduled there. 
+- **Example**: You could taint a master node to prevent regular application pods from running on it; control plane pods would have the necessary tolerations. 
+
+## Node Affinity
+- **Node Affinity** is a property of a pod that specifies a preference for (or requirement to run on) nodes with certain labels. 
+- **Purpose:** To ensure pods are scheduled on nodes with specific characteristics, such as a GPU label or being in a specific zone. 
+- **Types:** It can be a required affinity (a hard requirement) or a preferred affinity (a preference). 
+
+## Difference betwenn Node Selector, affinity, anti affinity, node affinity, pod affinity
+
+| Feature                     | Scope      | Based on       | Use Case                                |
+| --------------------------- | ---------- | -------------- | --------------------------------------- |
+| **Node Selector**           | Node       | Node labels    | Simple, exact match rules               |
+| **Node Affinity**           | Node       | Node labels    | Advanced node selection with operators  |
+| **Pod Affinity**            | Pod-to-Pod | Pod labels     | Place pods together (colocation)        |
+| **Pod Anti-Affinity**       | Pod-to-Pod | Pod labels     | Spread pods apart (HA, fault tolerance) |
+| **Affinity (General)**      | Concept    | Node/Pod rules | Attraction placement logic              |
+| **Anti-Affinity (General)** | Concept    | Node/Pod rules | Repulsion placement logic               |
