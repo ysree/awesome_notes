@@ -12,11 +12,10 @@ Raid concepts (Raid 5 and Raid 6 is implemented using erasure coding )
 Raid 0 - Striping (data is distributed ,no protection)
 Raid 1 - Mirroring ( data is duplicated , 2 copies of data is always written, you will have data protection)
 Raid 1 - 100 GB file ,200 GB is needed
-Raid 5 - min of 4 hosts is required ,
-100 GB data will require only 133.33 GB ,
-Data reconstruction happens using parity
-Raid6 - 2 failures can be tolerated ,but required min 6 hosts to implemented
-100 GB will require 150 GB
+Raid 5 - min of 4 hosts is required , Data reconstruction happens using parity
+Eg. For 100 GB data will require only 133.33 GB because of parity occupies
+Raid6 - 2 failures can be tolerated ,but required min 6 hosts to implemented. Its a combination of raid 0 and raid 1
+eg. 100 GB will require 150 GB
 
 ----------
 HDD < SSD < Nvme
@@ -179,7 +178,7 @@ VM - backup of the vm
     - ⚠️ Not recommended as a long-term backup (snapshots grow and impact performance).
 
 2. Image-level Backup (Preferred)
-    - Backup software integrates with the hypervisor API (VMware VADP, Hyper-V VSS, Nutanix APIs).
+    - Backup software integrates with the hypervisor API (VMware VADP(vmware api for data protection), Hyper-V VSS, Nutanix APIs).
     - Captures the entire VM disk image (VMDK, VHDX, QCOW2, etc.).
     - Can restore the whole VM or individual files.
     - Tools: Veeam, Commvault, Rubrik, NetBackup, Nutanix Mine.
@@ -419,28 +418,6 @@ HTTP Status Codes Cheat Sheet
         503 Service Unavailable → Server temporarily overloaded or down.
         504 Gateway Timeout → Upstream server didn’t respond in time.
         505 HTTP Version Not Supported → Server doesn’t support requested HTTP version.
-
-What is DHCP? (Dynamic Host Configuration Protocol)
-    DHCP is a network protocol used to automatically assign IP addresses and other network configuration settings (like subnet mask, gateway, and DNS servers) to devices on a network. This helps devices communicate on the network without manually configuring IP addresses.
-
-    Think of it as a “network address manager” that hands out addresses to devices when they join the network.
-
-    How DHCP Works (Step-by-Step)
-        The DHCP process involves 4 main steps, often called DORA:
-        Discover
-        When a device (client) connects to a network, it broadcasts a DHCP Discover message to find available DHCP servers.
-        Offer
-        A DHCP server receives the discover message and replies with a DHCP Offer, providing an available IP address and network configuration.
-        Request
-        The client responds with a DHCP Request, asking to use the offered IP address.
-        Acknowledge
-        The DHCP server sends a DHCP Acknowledgment (ACK) to confirm that the IP address is assigned to the client for a specific lease period.
-
-    Key Features of DHCP
-        Automatic IP assignment: No need to manually configure IP addresses.
-        IP reuse: IPs are leased temporarily, so they can be reused.
-        Centralized management: All IPs are managed from the DHCP server.
-        Support for large networks: Useful for dynamic environments like offices, data centers, and cloud networks.
 
 ---------------------------
 Couple of interview problems 
