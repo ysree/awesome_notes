@@ -1,6 +1,46 @@
+# Storage, Linux, and Testing Concepts
 
-Things to read in storage :
---------------------------------
+## Table of Contents
+
+- [Erasure Coding and RAID Concepts](#erasure-coding-and-raid-concepts)
+- [Storage Device Types: HDD, SSD, NVMe](#storage-device-types-hdd-ssd-nvme)
+- [Block Sizes in vSAN and OS](#block-sizes-in-vsan-and-os)
+- [I/O Types and Performance Measurement](#io-types-and-performance-measurement)
+- [Inodes in Storage](#inodes-in-storage)
+- [Deduplication](#deduplication)
+- [Compression](#compression)
+- [Global Deduplication](#global-deduplication)
+- [vSAN and VM Backups](#vsan-and-vm-backups)
+- [Changed Block Tracking (CBT)](#changed-block-tracking-cbt)
+- [RPO vs RTO](#rpo-vs-rto)
+- [vSphere Replication](#vsphere-replication)
+- [Array-Based Replication](#array-based-replication)
+- [Raw Device Mapping (RDM)](#raw-device-mapping-rdm)
+- [vSCSI Controller](#vscsi-controller)
+- [HTTP, FTP, and SFTP](#http-ftp-and-sftp)
+- [SnapTree](#snaptree)
+- [Hydrated Disk](#hydrated-disk)
+- [VADP](#vadp)
+- [VSS Snapshot](#vss-snapshot)
+- [Linux Queuesing](#linux-queuesing)
+- [Golden 3-2-1 Rule](#golden-3-2-1-rule)
+- [NFS Mounts](#nfs-mounts)
+- [Overcommit Techniques](#overcommit-techniques)
+- [Thick and Thin Provisioning](#thick-and-thin-provisioning)
+- [SSL and TLS](#ssl-and-tls)
+- [Linux Fundamentals](#linux-fundamentals)
+- [HTTP Status Codes](#http-status-codes)
+- [Interview Problems](#interview-problems)
+- [TestNG Notes](#testng-notes)
+- [Google Drive System Test Use Cases](#google-drive-system-test-use-cases)
+- [Files and Folders Test Scenarios](#files-and-folders-test-scenarios)
+- [Webpage Troubleshooting](#webpage-troubleshooting)
+- [Stress and Scale for Data Protection](#stress-and-scale-for-data-protection)
+- [Coding Problem: Longest Substring with k Distinct Characters](#coding-problem-longest-substring-with-k-distinct-characters)
+- [Comprehensive Test Plan for Distributed File System](#comprehensive-test-plan-for-distributed-file-system)
+- [Nutanix Interview Experience](#nutanix-interview-experience)
+
+## Erasure Coding and RAID Concepts
 
 Erasure coding? How it works?
 Data is split into chunks and then encoded with parity information.
@@ -17,7 +57,8 @@ Eg. For 100 GB data will require only 133.33 GB because of parity occupies
 Raid6 - 2 failures can be tolerated ,but required min 6 hosts to implemented. Its a combination of raid 0 and raid 1
 eg. 100 GB will require 150 GB
 
-----------
+## Storage Device Types: HDD, SSD, NVMe
+
 HDD < SSD < Nvme
 🔹 1. HDD (Hard Disk Drive)
     Technology: Mechanical — spinning magnetic platters with a moving read/write head.
@@ -43,11 +84,11 @@ HDD < SSD < Nvme
     Cost: Most expensive per GB.
     Use case: Databases, AI/ML, gaming, high-performance workloads.
 
--------------
+## Block Sizes in vSAN and OS
+
 Vsan block size is 32kb
 o/s level - 4 KB in both linux and windows
 apps - 4 MB blocks 
-
 
 1GB of data -- 4kb blocks -- 5 mins (100 mb/s
 32kb - 1 min -- (500 seconds)
@@ -57,6 +98,7 @@ Number of i/os will reduce when you increase block size
 
 [0,1,2]
 
+## I/O Types and Performance Measurement
 
 Random Read vs write 
 Sequential Read vs write
@@ -88,9 +130,8 @@ Measuring storage performance in linux - fio /iometer
         - Reports IOPS, bandwidth, latency distribution.
         - Scriptable for automation (JSON output).
 
+## Inodes in Storage
 
-
-inodes in storage ? 
 🔹 What is an Inode? 
     - command to check inode usage : df -i
     - command to see inode number : ls -i
@@ -129,6 +170,7 @@ inodes in storage ?
     - File name = Label on the shelf
     - The catalog (inode) tells you where to find the actual content (blocks on disk).
 
+## Deduplication
 
 Deduplication or Dedupe - Remove multiple identical books, keep one copy.
     Deduplication eliminates duplicate data and stores only unique chunks, saving space and improving efficiency.
@@ -145,6 +187,8 @@ Deduplication or Dedupe - Remove multiple identical books, keep one copy.
         - Saves storage space (sometimes up to 70–90%).
         - Reduces backup time and network bandwidth (less data to transfer).
         - Cuts costs on large storage systems.
+
+## Compression
 
 Compression -- reduce the size of data by encoding it more efficiently
     🔹 How It Works
@@ -164,10 +208,14 @@ Compression -- reduce the size of data by encoding it more efficiently
         - Reduces transfer time over networks (smaller files).
         - Improves performance in some cases (less I/O).
 
+## Global Deduplication
+
 What is Global Deduplication?
     - Deduplication is the process of removing duplicate copies of data blocks to save storage space.
     - Global Deduplication extends this concept across multiple volumes, datastores, or even across the entire storage system, instead of deduplicating only within a single volume.
     - The system keeps a central index of all unique blocks and ensures duplicates are stored only once globally.
+
+## vSAN and VM Backups
 
 Vsan -- enable 
 
@@ -178,37 +226,49 @@ VM - backup of the vm
     - ⚠️ Not recommended as a long-term backup (snapshots grow and impact performance).
 
 2. Image-level Backup (Preferred)
-    - Backup software integrates with the hypervisor API (VMware VADP(vmware api for data protection), Hyper-V VSS, Nutanix APIs).
+    - Backup software integrates with the hypervisor API (VMware VADP, Hyper-V VSS, Nutanix APIs).
     - Captures the entire VM disk image (VMDK, VHDX, QCOW2, etc.).
     - Can restore the whole VM or individual files.
     - Tools: Veeam, Commvault, Rubrik, NetBackup, Nutanix Mine.
 
 3. Data backup solutions - veam ,emc avamar ,cohesity ,rubrik
 
-4. What is CBT? VMware vSphere APIs for Data Protection (VADP)
+## Changed Block Tracking (CBT)
+
+What is CBT? VMware vSphere APIs for Data Protection (VADP)
     - Changed Block Tracking (CBT) is a VMware feature that keeps track of which disk blocks have changed since the last backup.
     - Instead of scanning the entire virtual disk (VMDK), the backup software only reads the changed blocks.
     - Works with VMware vSphere APIs for Data Protection (VADP).
+
+## RPO vs RTO
 
 RPO vs RTO (often confused)
     - RPO (Recovery Point Objective): How much data you can lose (measured in time). Acceptable data loss (backup age). Backup every 15 min = RPO 15 min
     - RTO (Recovery Time Objective): How quickly you must restore service after failure (measured in duration). Acceptable downtime (restore speed). Service must be up in 1 hour
 
+## vSphere Replication
 
 What is vSphere Replication? Software replication
     - vSphere Replication (VR) is VMware’s built-in feature for replicating VMs from one site to another.
     - It provides disaster recovery (DR) by keeping a copy of VMs at a secondary site.
     - Replication happens at the hypervisor level (not storage array level).
+    - from multiple sources sites to single target site also possible ,but every site should have a VR appliance ,leverages CBT tracking technique and all esxi hosts would be pusehd with VR agents and NFC copy is performed from source to destination site for changed blocks
+
+## Array-Based Replication
 
 What is Array-Based Replication?
     - Array-Based Replication (ABR) is storage-level replication performed by the storage array itself, not by VMware or hypervisor.
     - The storage vendor’s array controller copies data from one storage array (source) to another array (target), typically across sites.
     - Used for high-performance disaster recovery (DR), business continuity, and zero/near-zero data loss.
 
+## Raw Device Mapping (RDM)
+
 What is Raw Device Mapping (RDM)? 
     - Whenever a vm is created , vmdk vm files are created on the vmfs file system
     - RDM is a method in VMware vSphere that allows a VM to directly access a LUN (logical unit number) on the storage array.
     - Instead of storing the VM’s virtual disk as a VMDK file inside a datastore, the VM is given a pointer file that maps straight to the raw LUN.
+
+## vSCSI Controller
 
 What is vscsi (Virtual SCSI Controller)
     - vSCSI controller is the virtual SCSI interface inside a VM that connects virtual disks (VMDKs) or RDMs to the VM.
@@ -216,7 +276,7 @@ What is vscsi (Virtual SCSI Controller)
         - LSI Logic SAS/Parallel → older workloads.
         - VMware Paravirtual (PVSCSI) → high-performance, low CPU overhead.
 
-
+## HTTP, FTP, and SFTP
 
 HTTP, FTP, and SFTP in a clear and structured way.
     1. HTTP (Hypertext Transfer Protocol)
@@ -249,6 +309,8 @@ HTTP, FTP, and SFTP in a clear and structured way.
         Pros: Secure, encrypted, works through firewalls easily, single port (22).
         Cons: Slightly slower than FTP due to encryption overhead.
 
+## SnapTree
+
 snaptree 
     - SnapTree is a snapshot management technology used by some storage systems (e.g., NetApp, Nutanix, Pure Storage).
     - It allows creating space-efficient snapshots of data while supporting fast creation and deletion.
@@ -260,8 +322,12 @@ snaptree
         - Supports multiple branches → useful for backup, testing, and cloning.
         - Non-disruptive → snapshots don’t impact ongoing I/O significantly.
 
+## Hydrated Disk
+
 hydrated disk
     -  A fully hydrated disk or VM has all its storage blocks physically allocated, unlike thin-provisioned disks where storage is allocated only as data is written. It provides better performance and predictable storage usage.
+
+## VADP
 
 What is VADP?
     - VADP stands for vSphere APIs for Data Protection.
@@ -269,14 +335,17 @@ What is VADP?
     - It enables agentless backups (no need to install backup agents inside every VM).
     - VADP is VMware’s API framework for efficient, agentless backup and restore of VMs. It leverages snapshots and changed block tracking, supports multiple transport modes, and is widely used by third-party backup solutions.
 
+## VSS Snapshot
+
 vss snapshot ? - volume shadow copy service windows proprietary 
     - VSS Snapshot is a Windows mechanism to create application-consistent point-in-time copies of data. It ensures that applications like SQL or Exchange are in a consistent state when backup is taken, and works via requestors, writers, and providers.
     - volume shadow copy service -- For Consistent backups ,Requestor(3rd party backup solutions) ,they request the vss for a volume shadow copy ,then vss asks the write (app like sql server) to complete the pending transaction ,flush the cache ,discard the redo logs etc and then freezes I/o for few seconds and then takes a backup ,during this process I/o is queued and once the backup is completed I/0 is completed
 
+## Linux Queuesing
+
 Linux quescing is equivalent to windows vss 
 
-vsphere replication 
-    - from multiple sources sites to single target site also possible ,but every site should have a VR appliance ,leverages CBT tracking technique and all esxi hosts would be pusehd with VR agents and NFC copy is performed from source to destination site for changed blocks
+## Golden 3-2-1 Rule
 
 What is the golden 3-2-1 Rule?
     The 3-2-1 rule is a best practice guideline for data backup to ensure reliability and disaster recovery.
@@ -293,6 +362,8 @@ What is the golden 3-2-1 Rule?
         Protects against disasters like fire, flood, or theft.
         Example: local backup on NAS + offsite backup in cloud storage.
 
+## NFS Mounts
+
 NFS Mounts Overview
     - NFS (Network File System) allows Linux/Unix clients to access remote file systems over the network.
     - When mounting an NFS share, you can choose hard or soft mount options.
@@ -301,15 +372,21 @@ NFS Mounts Overview
     - Soft mount: 
         If the server is unreachable, the client will timeout and return an error
 
+## Overcommit Techniques
+
 CPU, memory and disk overcommit techniques
     - CPU Overcommit: Allocating more virtual CPUs (vCPUs) to VMs than the physical CPU cores available. Hypervisor schedules vCPUs on physical cores as needed.
     - Memory Overcommit: Allocating more virtual memory to VMs than the physical RAM available. Hypervisor uses techniques like ballooning, swapping, and compression to manage memory.
     - Disk Overcommit: Allocating more virtual disk space to VMs than the physical storage available. Thin provisioning is a common technique where storage is allocated on-demand as data is written.
 
+## Thick and Thin Provisioning
+
 Thick and Thin Provisioning
     - Thin Provisioning: Allocates storage space on-demand as data is written. Initial allocation may be small, and space is increased as needed.
     - Thick Provisioning: Allocates the entire specified storage space upfront, regardless of actual usage. This can lead to wasted space if not all allocated space is used.
     
+## SSL and TLS
+
 SSL, TLS
 
     SSL (Secure Sockets Layer) and TLS (Transport Layer Security) are cryptographic protocols designed to provide secure communication over a computer network. TLS is the successor to SSL.
@@ -352,8 +429,7 @@ SSL, TLS
         4. Save the configuration file.
         5. Restart Nginx to apply changes: sudo systemctl restart nginx.
 
-
-
+## Linux Fundamentals
 
 -------------------------------
 
@@ -374,6 +450,7 @@ memory consumption
 memory leaks ?
 chmod ,chown
 
+## HTTP Status Codes
 
 HTTP Status Codes Cheat Sheet
     HTTP status codes tell the client (browser, API, app) what happened when it made a request to a server.
@@ -419,14 +496,12 @@ HTTP Status Codes Cheat Sheet
         504 Gateway Timeout → Upstream server didn’t respond in time.
         505 HTTP Version Not Supported → Server doesn’t support requested HTTP version.
 
----------------------------
+## Interview Problems
+
 Couple of interview problems 
 
 Longest common prefix for a list of words
 Find largest non-repeating character string from given
-
-
- --------------------------------
 
 Interview problems
  
@@ -439,11 +514,10 @@ And from 13112221 to 312211
 5.Regular expression for ipv4 address
 6. spiral matrix problem
 
-
 205 -- reset content
 what is user agent
 
-
+## TestNG Notes
 
 TestNG Notes -- Almost everything is similar even in pytest framework ,All the below features are available even in pytest framework 
 
@@ -475,7 +549,7 @@ or in the testng xml add listener tag and provide listener class name
 
 let's say we have 2 groups ,named functional and system ,then in testng xml we can define a new group with name full and include both functional and system under it and in the run tag provide this name full 
 
-
+## Google Drive System Test Use Cases
 
 ---------------------------------------------------- 3rd round ----------------------------------------------
 
@@ -483,13 +557,14 @@ Interview question :
 
 Come up Google Drive system Test use cases
 
+## Files and Folders Test Scenarios
+
 -------------------------------------------
 Files and Folders 
 
+## Answer
 
-----------------------------------------
 Answer 
-
 
 Scale 
 users -- > 
@@ -505,14 +580,12 @@ Stress
 --> multiple devices ,phone ,laptop ,TV 
 --> Parallel users trying to upload files in parallel 
 
-
 Performance
 
 --> 4KB block size ,32KB ,4MB
 --> APIs response is coming in a reasonable time 
 
 1000 files ,query for the files ,render in a reasonable time 
-
 
 Resiliency
 
@@ -523,11 +596,11 @@ Resiliency
 5. Redundancy is working or not
 6. FC switch level redundancy
 
+## Webpage Troubleshooting
 
 webpage on linux server hosted in office 
 
 website cant be reached
-
 
 workday.vmware.com -- Ping workday.vmware.com 
 nslookup  workday.vmware.com
@@ -537,14 +610,9 @@ our gateway could be down
 firewall is enabled and 80 is blocked on the server side 
 Load balancer could be down 
 
-
- 
-
-
-
+## Stress and Scale for Data Protection
 
 ----------------------------4th round ------------------------------------------------------------
-
 
 stress and scale scenarios for Data Protection of VMs managed by Vcenter below 
 
@@ -556,10 +624,11 @@ stress and scale scenarios for Data Protection of VMs managed by Vcenter below
    archive older backups of a large number of vms in parallel
    Have a  vcenter inventory with large number of vms (say 10k)
     remove a large number of vms from backup configuration
-	
-"""Given an integer k and a string s, find the length of the longest substring that contains at most k distinct characters.
-For example, given s = "abcba" and k = 2, the longest substring with k distinct characters is "bcb"."""
 
+## Coding Problem: Longest Substring with k Distinct Characters
+
+"""Given an integer k and a string s, find the length of the longest substring that contains at most k distinct characters.
+For example, given s = "abcba" and k = 2, the longest substring with k distinct characters is "bcb".""
 
 ----------------------coding round -----------------------------
 
@@ -596,10 +665,6 @@ def substrings_k_distinct(input_str,k):
             final_out=k
     return final_out
 
-
-
-
-
 output = substrings_k_distinct("abcba",2)
 print (output)
 output2 = substrings_k_distinct("abcbacd",3)
@@ -607,9 +672,9 @@ print (output2)
 output3 = substrings_k_distinct("abcbbbbcccbdddadacb",2)
 print (output3)
 
+## Comprehensive Test Plan for Distributed File System
 
 Test plan 
-
 
 -------------------------------------------Last Round -----------------------------------------------------
 
@@ -861,7 +926,7 @@ Comprehensive Test Plan for Distributed File Browsing and Download System
     No critical/severe defects open.
     Performance meets SLAs (e.g., ≤ t seconds for 4TB download).
     Resiliency: 100% recovery from injected failures within SLAs (e.g., 5-min Mgmt downtime).
- 
+
+## Nutanix Interview Experience
 
 https://www.geeksforgeeks.org/interview-experiences/nutanix-interview-experience-for-mts-qa-4-year-experience-language-python/
-

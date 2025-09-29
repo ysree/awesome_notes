@@ -48,7 +48,7 @@ node01         Ready    <none>   2m8s    v1.19.0   172.17.0.29   <none>        U
 `$ kubectl create deployment webapp --image=kodekloud/webapp-color --replicas=3 --dry-run=client -o yaml > webapp-deployment.yaml`
 
 
-## Difference between API Gatewau & Service Mesh
+## Difference between API Gateway & Service Mesh
 **API gateways** are for north-south traffic, **service meshes** are for east-west.
 
 ## Taints and Tolerations

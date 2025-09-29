@@ -2,16 +2,16 @@
 
 ## Professional Summary
 
-- **Staff Engineer** with **18 years of software engineering experience**, including the last **9 years at VMware** in the **System Test team**.  
+- **Staff Engineer** with **18 years of software engineering experience**, including the last **9 years at VMware** in the ** vSphere System Test team**.  
 - Specialized in **quality assurance (QA), automation, and large-scale vCenter system validation**.  
-- Expertise in **vCenter scale, greenfield deployments, feature validations, uptime stress, performance, and resiliency testing** at enterprise scale.  
+- Expertise in **vCenter scale, greenfield deployments, feature validations, uptime stress, performance, and resiliency testing** at scale.  
 - Involved in designing **automation frameworks, resilient CI/CD pipelines, and observability solutions**.  
 
 ## Key Contributions
 
 ### QA Automation & Frameworks
 - Designed and implemented **end-to-end automation frameworks** covering regression, performance, stress, scalability, monitoring, and resiliency testing of vCenter systems.  
-- Developed a **Kubernetes-based workflow orchestration engine** for greenfield deployments that runs and validates on any hardware.  
+- Developed a self service **Kubernetes-based workflow orchestration engine** for greenfield deployments that runs and validates on any hardware.  
   - Scales and validates vCenter systems as per the defined limits.  
   - Discover workflows and operations based on **day-2 user operations** from telemetry databases.  
   - Simulated **CPU, memory, I/O, and network stress scenarios** to validate **fault tolerance**.  

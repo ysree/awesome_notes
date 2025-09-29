@@ -1,0 +1,544 @@
+# Namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: myapp
+---
+# ResourceQuota for namespace
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: myapp-quota
+  namespace: myapp
+spec:
+  hard:
+    requests.cpu: "4"
+    requests.memory: 8Gi
+    limits.cpu: "8"
+    limits.memory: 16Gi
+    pods: "20"
+---
+# LimitRange (defaults & limits)
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: myapp-limitrange
+  namespace: myapp
+spec:
+  limits:
+    - default:
+        cpu: "500m"
+        memory: 512Mi
+      defaultRequest:
+        cpu: "250m"
+        memory: 256Mi
+      type: Container
+---
+# ConfigMap for frontend & backend config
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: myapp-config
+  namespace: myapp
+data:
+  FRONTEND_ENV: "production"
+  BACKEND_SERVICE_HOST: "backend.myapp.svc.cluster.local"
+  BACKEND_SERVICE_PORT: "8080"
+  DATABASE_HOST: "postgres.myapp.svc.cluster.local"
+  DATABASE_PORT: "5432"
+---
+# Secret (base64 encoded values) - change values before use
+apiVersion: v1
+kind: Secret
+metadata:
+  name: myapp-secret
+  namespace: myapp
+type: Opaque
+data:
+  # echo -n "postgresuser" | base64
+  DB_USER: cG9zdGdyZXN1c2Vy
+  # echo -n "postgrespass" | base64
+  DB_PASSWORD: cG9zdGdyZXNwYXNz
+  # echo -n "super-secret-cookie" | base64
+  SESSION_SECRET: c3VwZXItc2VjcmV0LWNvb2tpZQ==
+---
+# ServiceAccount for backend (example least privilege)
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: backend-sa
+  namespace: myapp
+---
+# Role allowing reading secrets (just example)
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: backend-secret-reader
+  namespace: myapp
+rules:
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get"]
+---
+# Bind Role to ServiceAccount
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: backend-secret-binding
+  namespace: myapp
+subjects:
+  - kind: ServiceAccount
+    name: backend-sa
+    namespace: myapp
+roleRef:
+  kind: Role
+  name: backend-secret-reader
+  apiGroup: rbac.authorization.k8s.io
+---
+# Taint example: (This is an instruction comment — taints are applied to nodes via kubectl)
+# Example: kubectl taint nodes <node-name> dedicated=db=true:NoSchedule
+# We'll include tolerations in DB Pod to tolerate such taint.
+
+---
+# PersistentVolumeClaim for Postgres
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+  namespace: myapp
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: standard
+---
+# Postgres Deployment (Stateful workload pattern via Deployment for simplicity)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: myapp
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      serviceAccountName: backend-sa
+      # Tolerations so DB can run on tainted DB nodes
+      tolerations:
+        - key: "dedicated"
+          operator: "Equal"
+          value: "db"
+          effect: "NoSchedule"
+      # Prefer to schedule DB on nodes labeled 'storage=true'
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: storage
+                    operator: In
+                    values:
+                      - "true"
+      containers:
+        - name: postgres
+          image: postgres:13
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-secret
+                  key: DB_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-secret
+                  key: DB_PASSWORD
+            - name: POSTGRES_DB
+              value: myappdb
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: pgdata
+              mountPath: /var/lib/postgresql/data
+          resources:
+            requests:
+              cpu: "250m"
+              memory: 512Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+      volumes:
+        - name: pgdata
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+---
+# Postgres Service (ClusterIP, used by backend)
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: myapp
+  labels:
+    app: postgres
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+      protocol: TCP
+      name: postgres
+  selector:
+    app: postgres
+  type: ClusterIP
+---
+# Backend Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: myapp
+  labels:
+    app: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: backend
+        tier: backend
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+    spec:
+      serviceAccountName: backend-sa
+      # Pod anti-affinity to spread backend pods across nodes
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values: ["backend"]
+                topologyKey: "kubernetes.io/hostname"
+        # Prefer backend on nodes with compute=true
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 50
+              preference:
+                matchExpressions:
+                  - key: compute
+                    operator: In
+                    values: ["true"]
+      containers:
+        - name: backend
+          image: myregistry/my-backend:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: myapp-config
+          env:
+            - name: DB_HOST
+              value: postgres.myapp.svc.cluster.local
+            - name: DB_PORT
+              value: "5432"
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-secret
+                  key: SESSION_SECRET
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: "300m"
+              memory: 512Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+---
+# Backend Service (ClusterIP)
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: myapp
+  labels:
+    app: backend
+spec:
+  type: ClusterIP
+  selector:
+    app: backend
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: http
+---
+# Backend Horizontal Pod Autoscaler (scale by CPU)
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: backend-hpa
+  namespace: myapp
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: backend
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60
+---
+# Frontend Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: myapp
+  labels:
+    app: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+        tier: frontend
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "80"
+    spec:
+      # Node anti-affinity example: avoid nodes labeled maintenance=true
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: maintenance
+                    operator: NotIn
+                    values:
+                      - "true"
+      containers:
+        - name: frontend
+          image: myregistry/my-frontend:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: http
+          envFrom:
+            - configMapRef:
+                name: myapp-config
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: "200m"
+              memory: 256Mi
+            limits:
+              cpu: "500m"
+              memory: 512Mi
+---
+# Frontend Service (LoadBalancer type for external access)
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-lb
+  namespace: myapp
+  annotations:
+    # cloud specific annotation examples (adjust for your cloud)
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
+spec:
+  type: LoadBalancer
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+---
+# Ingress (HTTP routing) - requires Ingress controller
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myapp-ingress
+  namespace: myapp
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: myapp.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-lb
+                port:
+                  number: 80
+---
+# PodDisruptionBudget for backend (availability during evictions)
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: backend-pdb
+  namespace: myapp
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: backend
+---
+# NetworkPolicy: restrict traffic so only frontend can call backend, and backend can call db
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: myapp-default-policy
+  namespace: myapp
+spec:
+  podSelector: {} # applies to all pods by default
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: frontend
+      ports:
+        - protocol: TCP
+          port: 8080
+    - from:
+        - podSelector:
+            matchLabels:
+              app: postgres
+      ports:
+        - protocol: TCP
+          port: 5432
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+      ports:
+        - protocol: TCP
+          port: 53
+---
+# ServiceAccount for admin tasks and debugging (example)
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: myapp-admin
+  namespace: myapp
+---
+# Example Role granting read access to pods & services
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: myapp-read
+  namespace: myapp
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services", "endpoints"]
+    verbs: ["get", "list", "watch"]
+---
+# Bind the role to the admin SA
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: myapp-read-binding
+  namespace: myapp
+subjects:
+  - kind: ServiceAccount
+    name: myapp-admin
+    namespace: myapp
+roleRef:
+  kind: Role
+  name: myapp-read
+  apiGroup: rbac.authorization.k8s.io
+---
+# HorizontalPodAutoscaler for frontend (example scaling by CPU)
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: frontend-hpa
+  namespace: myapp
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: frontend
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
+---
+# Example: Debug / utility pod (netshoot) as ephemeral job (for troubleshooting)
+apiVersion: v1
+kind: Pod
+metadata:
+  name: netshoot
+  namespace: myapp
+  labels:
+    tool: netshoot
+spec:
+  containers:
+    - name: netshoot
+      image: nicolaka/netshoot:latest
+      command: ["/bin/bash", "-c", "sleep 1d"]
+  restartPolicy: Never
+---
+# End of multi-document YAML
