@@ -121,6 +121,108 @@ This test plan focuses on **system-level testing** to validate end-to-end functi
 | TC18 | Edge: Offline edit with no space | Low local storage | 1. Edit large file offline. | Saves locally if space available; prompt if not. | Low |
 | TC19 | Negative: Concurrent edit conflict | Shared Doc | 1. Two users edit same section simultaneously. | Conflict resolution offered. | Medium |
 
+
+
+
+
+---
+
+#### 1. Functional Test Cases
+
+| ID  | Test Case                   | Expected Result |
+|-----|------------------------------|----------------|
+| F1  | User signup / registration   | User is able to create an account with valid credentials |
+| F2  | User login                   | User can log in with valid credentials; invalid login shows error |
+| F3  | Upload file                  | User can upload files of supported types and sizes |
+| F4  | Download file                | User can download shared files successfully |
+| F5  | File preview                 | User can preview supported file types in-app |
+| F6  | File sharing                 | User can share files with other users via link or email |
+| F7  | Permissions                  | Shared files respect read/write permissions |
+| F8  | Delete file                  | User can delete files and deletion reflects for shared users |
+| F9  | Search files                 | User can search files by name, type, or tags |
+| F10 | Versioning                   | Previous versions of files are retained if versioning is supported |
+
+---
+
+#### 2. Boundary & Edge Cases
+
+| ID  | Test Case                     | Expected Result |
+|-----|-------------------------------|----------------|
+| B1  | Upload empty file             | Should allow or reject based on app rules |
+| B2  | Upload maximum file size      | Upload succeeds without errors |
+| B3  | Upload unsupported file type  | Proper error message is shown |
+| B4  | Maximum number of files/folder| App handles gracefully without crashing |
+| B5  | Download large files          | File downloads completely and correctly |
+| B6  | Multiple concurrent uploads   | System handles concurrency without data loss |
+
+---
+
+#### 3. Security Test Cases
+
+| ID  | Test Case                     | Expected Result |
+|-----|-------------------------------|----------------|
+| S1  | Authentication               | Only logged-in users can access files |
+| S2  | Authorization                | Users cannot access others’ private files |
+| S3  | Input validation             | Prevent injection attacks via filenames or metadata |
+| S4  | Secure links                 | Shared links have limited validity or require authentication |
+| S5  | Encryption                   | Files are stored/transferred securely (HTTPS / encryption) |
+| S6  | Password handling            | Passwords stored securely (hashed) |
+
+---
+
+#### 4. Performance & Load Test Cases
+
+| ID  | Test Case                        | Expected Result |
+|-----|----------------------------------|----------------|
+| P1  | Multiple concurrent uploads/downloads | App performance remains acceptable |
+| P2  | High file size uploads/downloads | No crashes or slowdowns |
+| P3  | Simultaneous login by many users | Authentication remains stable |
+| P4  | File search under load           | Search results returned within acceptable time |
+
+---
+
+#### 5. UI / Usability Test Cases
+
+| ID  | Test Case               | Expected Result |
+|-----|-------------------------|----------------|
+| U1  | Responsive design       | App works on different screen sizes |
+| U2  | File icons & previews   | Correct file icons shown based on type |
+| U3  | Notifications           | User receives notifications for shared files |
+| U4  | Drag & drop upload      | Feature works as expected |
+| U5  | Error messages          | Clear and informative messages displayed on failure |
+
+---
+
+#### 6. Integration Test Cases
+
+| ID  | Test Case                       | Expected Result |
+|-----|---------------------------------|----------------|
+| I1  | Cloud storage integration       | Files correctly uploaded/downloaded to cloud |
+| I2  | Email/SMS notifications        | Sharing triggers correct notifications |
+| I3  | Third-party authentication     | OAuth login works correctly |
+| I4  | API endpoints                  | All REST APIs function as expected |
+
+---
+
+#### 7. Backup & Recovery Test Cases
+
+| ID  | Test Case                        | Expected Result |
+|-----|----------------------------------|----------------|
+| R1  | Restore deleted file             | File restored from backup successfully |
+| R2  | System crash during upload       | File is either fully uploaded or rollback occurs |
+| R3  | Database failure                 | App recovers without data loss |
+
+---
+
+✅ **Summary Approach:**  
+- Cover **functional, boundary, security, performance, usability, integration, and recovery** scenarios.  
+- Include **positive and negative tests**.  
+- Prioritize **critical flows like upload, download, sharing, and permissions**.
+
+
+
+
+
 ## 5. Entry and Exit Criteria
 ### Entry Criteria
 - All functional specs reviewed and approved.

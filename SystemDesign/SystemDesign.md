@@ -8,7 +8,10 @@
 - **Security**: Authentication, authorization, rate limiting
 - **Communication**: Message queues, APIs, pub-sub patterns
 - **Operations**: Monitoring, deployment strategies, DevOps practices
-
+- **Throughput**: Number of requests processed per unit of time.
+- **Latency**: Time taken to process a request and return a response.
+- **Fault Tolerance**: Ability of a system to continue operating despite failures.
+- **Durability**: Once data is stored, it remains intact even after failures.
 
 
 ## Scalability Terms

@@ -103,8 +103,8 @@ Number of i/os will reduce when you increase block size
 Random Read vs write 
 Sequential Read vs write
 
-Measuring storage performance in linux - fio /iometer
-    iometer - windows and linux 
+- Measuring storage performance in linux - fio /iometer
+    - iometer - windows and linux 
         - Iometer (I/O meter) is an open-source storage benchmarking tool.
         - It is used to measure I/O performance (read/write speed, latency, IOPS) of storage systems like HDDs, SSDs, NVMe, SAN, and NAS.
         Workload Simulation
@@ -118,7 +118,7 @@ Measuring storage performance in linux - fio /iometer
         Custom Workloads
             - You can define your own mix (e.g., 70% read, 30% write, 4K block size, random access).
             - This helps mimic real-world application behavior (like databases or VMs).
-    fio - linux
+    - fio - linux
         What is fio?
         - fio = Flexible I/O Tester, a widely used benchmarking and stress-testing tool for disks and filesystems on Linux (and other OSes).
         - Similar to Iometer (Windows), but command-line based and more flexible.
@@ -132,13 +132,13 @@ Measuring storage performance in linux - fio /iometer
 
 ## Inodes in Storage
 
-🔹 What is an Inode? 
+- What is an Inode? 
     - command to check inode usage : df -i
     - command to see inode number : ls -i
     - An inode (index node) is a data structure used in Linux/Unix file systems (like ext3, ext4, XFS) to store metadata about a file.
     - Every file, directory, or object on the disk has an inode.
     - Think of an inode as the “ID card” of a file.
-🔹 What’s inside an inode?
+- What’s inside an inode?
     - An inode stores metadata, but not the file name.
     - Typical inode fields include:
     - File type (regular file, directory, symlink, etc.)
@@ -149,22 +149,22 @@ Measuring storage performance in linux - fio /iometer
     - Timestamps (created, modified, accessed)
     - Pointers to the actual data blocks on disk
     📌 The file name is stored separately in the directory entry, which maps a name → inode number.
-🔹 How inodes work
+- How inodes work
     - When you create a file:
     - The filesystem assigns it a free inode.
     - Metadata goes into the inode, data goes into blocks.
     - When you open a file:
     - The OS looks up the inode number from the directory.
     - Then it loads the inode to find where the data blocks are.
-🔹 Inode Limits
+- Inode Limits
     - A filesystem has a fixed number of inodes created at formatting time.
     - Even if there is free space on disk, you cannot create new files if inodes run out.
     - Example: 100,000 tiny files (1 KB each) on a disk with only 100,000 inodes → disk is “full” even if space remains.
-🔹 Inodes in Storage Systems
+- Inodes in Storage Systems
     - HDD/SSD: inodes work the same, they’re part of the filesystem.
     - Enterprise storage (Nutanix, NetApp, etc.): inodes still exist but are often abstracted behind the distributed filesystem.
     - Object storage (S3, Ceph, etc.): doesn’t use traditional inodes; metadata is handled differently.
-🔹 Quick Analogy
+- Quick Analogy
     - File = Book
     - Inode = Library catalog card (author, title, location)
     - File name = Label on the shelf
@@ -172,17 +172,17 @@ Measuring storage performance in linux - fio /iometer
 
 ## Deduplication
 
-Deduplication or Dedupe - Remove multiple identical books, keep one copy.
+- Deduplication or Dedupe - Remove multiple identical books, keep one copy.
     Deduplication eliminates duplicate data and stores only unique chunks, saving space and improving efficiency.
     
-    🔹 How It Works
-    Identify duplicate blocks or files
-        The system breaks data into chunks (fixed-size or variable-size).
-        A fingerprint will be calculated for each chunk. Uses hashing (like SHA-1, MD5) to detect identical chunks.
-    Store only one copy
-        If a chunk already exists, instead of writing it again, the system references the existing one.
-    Rebuild on access
-        When you read the file, the system reconstructs it using unique chunks and fingerprints + references.
+    - 🔹 How It Works
+        - Identify duplicate blocks or files
+            The system breaks data into chunks (fixed-size or variable-size).
+            A fingerprint will be calculated for each chunk. Uses hashing (like SHA-1, MD5) to detect identical chunks.
+        - Store only one copy
+            If a chunk already exists, instead of writing it again, the system references the existing one.
+        - Rebuild on access
+            When you read the file, the system reconstructs it using unique chunks and fingerprints + references.
     🔹 Benefits
         - Saves storage space (sometimes up to 70–90%).
         - Reduces backup time and network bandwidth (less data to transfer).

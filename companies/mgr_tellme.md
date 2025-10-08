@@ -1,5 +1,5 @@
 # Table of Contents
-- [Sreenivasa Reddy - Professional Profile](#sreenivasa-reddy---professional-profile)
+- [Telle me about Sreenivasa Reddy](#tell-me-about-sreenivasa-reddy---professional-profile)
 - [Agile methodology](#agile-methodology)
 - [Architectural Decisions](#architectural-decisions)
 - [Build Trust](#build-trust)
@@ -48,19 +48,11 @@
 
 # Introduction
 
-Hi, I am **Sreenivasa**. I have **18+ years of experience** in building large-scale platforms and leading engineering teams across cloud and on-premises environments. I specialize in distributed systems, infrastructure automation, and resilient SaaS application design.
-
----
-
-## Career Progression
-- Started career as a developer.
-- Progressed to solution design and system architecture roles.
-- Gained expertise in distributed systems, infrastructure automation, and resilient SaaS application design.
-
+Hi, I am **Sreenivasa**. I have **18+ years of experience** . For the past 9 years workging in VMware 
 ---
 
 ## Current Role at VMware by Broadcom
-In my current role, I am leading engineering teams responsible for **lifecycle management of VMware Cloud on AWS Software-Defined Data Centers (SDDCs)**— which is a complex, large-scale environment requiring automation, orchestration, for customer SDDC upgrades
+In my current role, I am leading engineering teams responsible for **lifecycle management of customer SDDC's** on VMware Cloud on AWS 
 
 ---
 
@@ -68,15 +60,41 @@ In my current role, I am leading engineering teams responsible for **lifecycle m
 - VMware Cloud on AWS manages the lifecycle of customer SDDC, ensuring infrastructure is secure, up-to-date, and optimized for performance.
 - VMWare release a Major SDDC software versions of of ESXi, vSAN, vCenter Server, and NSX as bundle to its cusomter for every 6 months
 ---
+1. I am a Senior Manager leading a team of 18 people.
+2. My team includes developers, testers, and DevOps engineers.
+3. They range from freshers to very senior engineers.
+4. We work on VMware Cloud on AWS, which is a managed service.
+5. Customers use it to run their Software-Defined Data Centers in the cloud.
+6. My main responsibility is to manage the end-to-end lifecycle of this service.
+7. This includes new features, ongoing maintenance, and tenant upgrades.
+8. A big part of my role is planning and executing SDDC upgrades.
+9. These upgrades happen on a fixed six-month release cycle.
+10. Upgrades are rolled out in waves to reduce customer risk.
+11. We start with VMware’s internal systems and then move to customer SDDCs.
+12. The upgrades are done in three phases to avoid workload downtime.
+18. Customers are kept informed through notifications and schedules.
+19. During these processes, my team ensures workloads continue to run.
+20. My role also involves working closely with operations and SRE teams.
+21. If issues come up, we monitor, take quick action, and fix them fast.
+22. I also coordinate with product, operations, and customer teams.
+23. I believe in collaboration and open communication across all levels.
+24. Apart from service ownership, I focus on people management
+25. By mentor junior engineers and help them grow in their careers.
+26. encourage senior engineers to take ownership of complex areas.
+27. make sure testing, automation, and CI/CD practices are followed.
+28. I also align my team’s work with product and business priorities.
+29. My goal is to provide reliable and secure services for customers.
+30. At the same time, I want to build a motivated and capable engineering team.
+
 
 ## My Team's Responsibilities
 
-My team is responsible for **development of services, maintenance, and upgrading customer SDDCs every 6 months** with minimal disruption.
+My team is responsible for **development of lifecycle management service, maintenance, and upgrading customer SDDCs every 6 months** with minimal disruption.
 
 To manage this complex process, we developed two key services:
 
-- **RCE (Release Coordination Engine)**: Automates coordination of tasks and dependencies across teams for smooth upgrades.  
-- **RLCM (SDDC Lifecycle Management)**: Manages the end-to-end SDDC upgrade process, including scheduling, execution, and post-upgrade validation.
+- **RCE (Release Coordination Engine)**: Automates coordination of tasks and dependencies across teams for smooth upgrades and post-upgrade validation.  
+- **RLCM (SDDC Lifecycle Management)**: Manages the end-to-end SDDC upgrade process, including scheduling, execution.
 
 These services allow my team to **orchestrate the entire upgrade process**, minimize downtime, and improve operational efficiency.
 
