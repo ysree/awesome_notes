@@ -93,7 +93,7 @@ This test plan covers the following:
 ## 7. Entry and Exit Criteria
 
 **Entry Criteria**
-- vCenter and ESXi environments deployed and stable  
+- Environments deployed and stable  
 - API endpoints accessible and documented  
 - Test automation environment ready
 
@@ -120,6 +120,8 @@ This test plan covers the following:
 - Defect Summary and Root Cause Analysis  
 - Automation Scripts and CI/CD Execution Logs  
 - Performance, Security, and Regression Metrics  
+
+=======================
 
 # vCenter API Test Cases
 
