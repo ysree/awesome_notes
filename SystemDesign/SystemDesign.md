@@ -1,3 +1,20 @@
+# Table of Contents
+- [System Design Key Categories](#system-design-key-categories)
+- [Scalability Terms](#scalability-terms)
+- [Availability & Reliability](#availability--reliability)
+- [Performance Terms](#performance-terms)
+- [Consistency & Data Terms](#consistency--data-terms)
+- [Architecture Patterns](#architecture-patterns)
+- [Load Balancing](#load-balancing)
+- [Caching](#caching)
+- [Database Terms](#database-terms)
+- [Security Terms](#security-terms)
+- [Messaging & Communication](#messaging--communication)
+- [Monitoring & Observability](#monitoring--observability)
+- [Data Processing](#data-processing)
+- [Networking](#networking)
+- [Deployment & DevOps](#deployment--devops)
+
 # System Design Key Categories 
 - **Scalability**: Horizontal/vertical scaling, auto-scaling concepts
 - **Availability**: High availability, fault tolerance, disaster recovery
@@ -164,6 +181,7 @@
 
 ### Cache Patterns
 - **Cache-Aside**: Application manages cache manually
+- **Cache-On-Read**: Read from cache first, then database if not found
 - **Write-Through**: Write to cache and database simultaneously
 - **Write-Behind/Write-Back**: Write to cache first, database later
 - **Refresh-Ahead**: Proactively refresh cache before expiration
@@ -189,6 +207,16 @@
 - **Master-Slave**: One write node, multiple read replicas
 - **Master-Master**: Multiple nodes accept writes
 - **Synchronous vs Asynchronous**: Trade-off between consistency and performance
+
+### Database Partitioning
+- **Definition**: Horizontal partitioning of database across multiple servers
+- **Strategies**: Range-based, hash-based, directory-based
+- **Challenges**: Cross-partition queries, rebalancing
+
+### Database Clustering
+- **Definition**: Vertical partitioning of database across multiple servers
+- **Strategies**: Range-based, hash-based, directory-based
+- **Challenges**: Cross-cluster queries, rebalancing
 
 ### NoSQL Database Types
 - **Document**: MongoDB, CouchDB (JSON-like documents)
@@ -302,6 +330,15 @@
 - **Use Cases**: Caching, load balancing, SSL termination
 
 ## Deployment & DevOps
+### Rolling Update
+- **Definition**: Gradually replace old pods with new ones
+- **Benefits**: Zero downtime, easy rollback, reduced risk
+- **Process**: Deploy to subset, monitor metrics, gradually increase
+
+### Recreate Deployment
+- **Definition**: Kill all old pods before starting new ones
+- **Benefits**: No downtime, but less availability during update
+- **Process**: Deploy to subset, monitor metrics, gradually increase
 
 ### Blue-Green Deployment
 - **Definition**: Two identical production environments, switch traffic between them
