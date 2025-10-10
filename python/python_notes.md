@@ -1681,19 +1681,40 @@ evens = [x for x in numbers[::2]]  # [1, 3, 5]
 
 For Kubernetes RBAC automation (from your previous context), slicing can extract subsets of user lists or role definitions from YAML configs processed in Python.
 
-## Frameworks
-- `numpy`: Numerical computing, arrays, linear algebra.
-- `pandas`: Data analysis with DataFrames.
-- `matplotlib`: Plotting and visualization.
-- `seaborn`: Statistical visualization.
-- `plotly`: Interactive visualizations.
-- `scikit-learn`: Machine learning.
-- `tensorflow`, `pytorch`: Deep learning.
-- `xgboost`: Gradient boosting.
-- `flask`, `django`, `fastapi`: Web frameworks.
-- `requests`, `paramiko`: HTTP and SSH.
-- `pytest`, `unittest`: Testing.
-- `logging`, `json`, `itertools`, `argparse`: Utilities.
+## Python libraries and Frameworks
+| **#** | **Package**        | **Description**                                              |
+|-------|--------------------|--------------------------------------------------------------|
+| 1     | NumPy              | For numerical computing, handling arrays, and mathematical operations. |
+| 2     | Pandas             | Data manipulation and analysis, providing DataFrames.         |
+| 3     | Matplotlib         | Plotting and data visualization library.                     |
+| 4     | Seaborn            | Built on top of Matplotlib, advanced statistical visualizations. |
+| 5     | SciPy              | Library for scientific and technical computing, extending NumPy. |
+| 6     | TensorFlow         | Open-source deep learning framework developed by Google.     |
+| 7     | Keras              | High-level neural networks API, works on top of TensorFlow.  |
+| 8     | Scikit-learn       | Machine learning library for data mining and analysis.       |
+| 9     | Flask              | Lightweight web framework for building web applications.     |
+| 10    | Django             | Full-stack web framework with batteries-included.            |
+| 11    | Requests           | Simple HTTP library for making requests to web services.     |
+| 12    | BeautifulSoup      | Web scraping library for parsing HTML and XML documents.     |
+| 13    | SQLAlchemy         | SQL toolkit and ORM library for Python.                      |
+| 14    | PyTorch            | Deep learning library for tensor computation, developed by Facebook. |
+| 15    | Jupyter            | Interactive notebooks for data analysis and code execution.  |
+| 16    | OpenCV             | Computer vision and image processing library.                |
+| 17    | Pillow             | Image processing library for opening, manipulating, and saving image files. |
+| 18    | pytest             | Framework for writing and running tests.                     |
+| 19    | Celery             | Distributed task queue for managing asynchronous tasks.      |
+| 20    | Plotly             | Interactive data visualization library.                      |
+| 21    | Pygame             | Set of Python modules for writing video games.               |
+| 22    | NetworkX           | Library for the creation, manipulation, and study of complex networks of nodes and edges. |
+| 23    | Scrapy             | Framework for web scraping and crawling.                     |
+| 24    | Fabric             | High-level Python library for automating deployment and system administration tasks. |
+| 25    | boto3              | Amazon Web Services (AWS) SDK for Python.                    |
+| 26    | Pytest-cov         | Plugin for pytest to measure test coverage.                  |
+| 27    | Twisted            | Event-driven networking engine for building networked applications. |
+| 28    | Cherrypy           | Object-oriented web application framework.                   |
+| 29    | Sphinx             | Documentation generator for Python projects.                 |
+| 30    | SymPy              | Symbolic mathematics library for Python.                     |
+
 
 ## Pytest
 `pytest` is a powerful testing framework.

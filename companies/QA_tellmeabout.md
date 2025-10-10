@@ -17,9 +17,9 @@
 
 Hi, I’m Sreenivasa, working as Staff Engineer in VMware. I have 18 years of experience, including the last 9 years at VMware as part of the **vSphere System Test team**.
 
-My work focuses on ensuring the **quality, scalability, and reliability of vCenter and ESXi** in large-scale enterprise environments. In VMware I do **system-level validation, automation, and framework design for distributed vSphere deployments**. I have contributed to validating vCenter across various dimensions — **scale, greenfield deployments, upgrades, performance, and resiliency** of production-scale customer environments.
+My work focuses on ensuring the **quality, scalability, and reliability of vCenter** in large-scale environments. In VMware I do **system-level validation, automation, and framework design for distributed vSphere deployments**. I have contributed to validating vCenter across various dimensions — **scale with differnt types of workloads like vms, containers, greenfield deployments, upgrades, performance, and resiliency** of production-scale customer environments.
 
-In my role, I work on **feature validation, writing test plans, implementing test strategies, setting up environments, running regression, test execution, bug tracking, automation, triaging issues, debugging large-scale systems**. I work closely with developers to isolate root causes, whether it’s a product defect, infrastructure issue, or test gap. 
+In my role, I work on **feature validation, writing test plans, implementing test strategies, setting up environments, running regression, test execution, automation, triaging issues, debugging large-scale systems**. I work closely with developers to isolate root causes, whether it’s a product defect, infrastructure issue, or test gap. 
 
  As Individual contributor, I **participate in sync meetings and design discussions** with **cross-functional teams, including product developers, feature QA, and performance teams, to align on priorities, test coverage, and upcoming feature readiness**.
 
@@ -27,7 +27,7 @@ In my role, I work on **feature validation, writing test plans, implementing tes
 ### QA Automation & Frameworks
 I am also involved in creating **automation scripts and test workflows**, especially for new vCenter or ESXi features, ensuring they’re validated at scale under different configurations.  
 
-- Applied **shift-left testing principles**, integrating automation coverage from the start of feature development.  
+- Applied **shift-left testing**, integrating automation coverage from the start of feature development.  
 
 - Designed and implemented **end-to-end automation frameworks** covering **regression, performance, stress, scalability, monitoring, and resiliency testing** of vCenter systems.  
 - Developed a self service **Kubernetes-based workflow orchestration engine** for greenfield deployments that runs and validates on any hardware.  

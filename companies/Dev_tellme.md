@@ -8,15 +8,15 @@
 
 # Key Contributions  
 
-1. Develop and maintain services for VMware Cloud on AWS, a managed SDDC platform.
-2. Build backend services using Java, Spring Boot, Python, and PostgreSQL for data persistence.
-3. Implement caching and high-performance solutions using Redis to optimize service response times.
-4. Design and develop customer workflows and operational processes, ensuring smooth automation and tenant operations.
-5. Participate in feature development, bug fixes, and service enhancements aligned with product priorities.
-6. Support tenant upgrades and SDDC lifecycle management, ensuring workloads remain reliable and available.
-7. Follow and improve CI/CD pipelines, automation, and testing frameworks for efficient development and deployment.
-8. Collaborate with testers, DevOps, and SRE teams to identify, triage, and resolve issues quickly.
-9. Ensure scalability, performance, and security in all development efforts.
+1. Develop and maintain Kubernetes-based workflow orchestration engine for VMware Cloud on AWS, a managed SDDC platform.
+2. This platform is used for lifecycle management service customer SDDC's on AWS.
+2. This is a backend services developed in Java, Spring Boot, Python, redis, containers, k8s , jenkins, groovy, shell and PostgreSQL for data persistence.
+3. Design and develop customer workflows and operational processes, ensuring smooth automation and tenant operations.
+4. Participate in feature development, bug fixes, and service enhancements aligned with product priorities.
+5. Support tenant upgrades and SDDC lifecycle management, ensuring workloads remain reliable and available.
+6. Follow and improve CI/CD pipelines, automation, and testing frameworks for efficient development and deployment.
+7. Collaborate with testers, DevOps, and SRE teams to identify, triage, and resolve issues quickly.
+8. Ensure scalability, performance, and security in all development efforts.
 10. Contribute to code reviews, design discussions, and architectural decisions.
 11. Document code, APIs, and workflows to support maintainability and operational readiness.
 12. Take ownership of complex modules or workflows, driving them from design to production.
