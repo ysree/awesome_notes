@@ -1,21 +1,71 @@
 # Table of Contents
 - [System Design Key Categories](#system-design-key-categories)
 - [Scalability Terms](#scalability-terms)
+    - [Horizontal Scaling (Scale Out)](#horizontal-scaling-scale-out)
+    - [Vertical Scaling (Scale Up)](#vertical-scaling-scale-up)
+    - [Auto-scaling](#auto-scaling)
 - [Availability & Reliability](#availability--reliability)
 - [Performance Terms](#performance-terms)
+    - [Latency](#latency)
+    - [Throughput](#throughput)
+    - [Response Time](#response-time)
+    - [Quality of Service (QoS)](#quality-of-service-qos)   
 - [Consistency & Data Terms](#consistency--data-terms)
+    - [ACID Properties](#acid-properties)
+    - [CAP Theorem](#cap-theorem)
+    - [Eventual Consistency](#eventual-consistency)
+    - [Strong Consistency](#strong-consistency)
+    - [BASE Properties](#base-properties)
 - [Architecture Patterns](#architecture-patterns)
+    - [Microservices](#microservices)
+    - [Monolithic Architecture](#monolithic-architecture)
+    - [Service-Oriented Architecture (SOA)](#service-oriented-architecture-soa)
+    - [Event-Driven Architecture](#event-driven-architecture)
+    - [Serverless Architecture](#serverless-architecture)
 - [Load Balancing](#load-balancing)
+    - [Load Balancer Types](#load-balancer-types)
+    - [Load Balancing Algorithms](#load-balancing-algorithms)
+    - [Health Checks](#health-checks)
 - [Caching](#caching)
+    - [Cache Levels](#cache-levels)
+    - [Cache Patterns](#cache-patterns)
+    - [Cache Invalidation](#cache-invalidation)
 - [Database Terms](#database-terms)
+    - [OLTP vs OLAP](#oltp-vs-olap)
+    - [Database Sharding](#database-sharding)
+    - [Database Replication](#database-replication)
+    - [Database Partitioning](#database-partitioning)
+    - [Database Clustering](#database-clustering)
+    - [NoSQL Database Types](#nosql-database-types)
 - [Security Terms](#security-terms)
+    - [Authentication vs Authorization](#authentication-vs-authorization)
+    - [OAuth 2.0](#oauth-20)
+    - [JWT (JSON Web Tokens)](#jwt-json-web-tokens)
+    - [Rate Limiting](#rate-limiting)
 - [Messaging & Communication](#messaging--communication)
+    - [Message Queues](#message-queues)
+    - [Publish-Subscribe Pattern](#publish-subscribe-pattern)
+    - [Message Broker](#message-broker)
 - [Monitoring & Observability](#monitoring--observability)
 - [Data Processing](#data-processing)
+    - [Batch Processing](#batch-processing)
+    - [Stream Processing](#stream-processing)
+    - [ETL vs ELT](#etl-vs-elt)
+    - [Data Lake vs Data Warehouse](#data-lake-vs-data-warehouse)
 - [Networking](#networking)
-- [Deployment & DevOps](#deployment--devops)
+    - [CDN (Content Delivery Network)](#cdn-content-delivery-network)
+    - [DNS (Domain Name System)](#dns-domain-name-system)
+    - [Proxy vs Reverse Proxy](#proxy-vs-reverse-proxy)
+- [Deployment Strategies](#deployment--devops)
+    - [Rolling Update](#rolling-update)
+    - [Recreate Deployment](#recreate-deployment)
+    - [Blue-Green Deployment](#blue-green-deployment)
+    - [Canary Deployment](#canary-deployment)
+    - [Feature Flags/Toggles](#feature-flagstoggles)
+    - [Container Orchestration](#container-orchestration)
+- [API Gateway](#api-gateway)
 
-# System Design Key Categories 
+# System Design Key Categories
 - **Scalability**: Horizontal/vertical scaling, auto-scaling concepts
 - **Availability**: High availability, fault tolerance, disaster recovery
 - **Performance**: Latency, throughput, response time metrics
@@ -263,11 +313,6 @@
 - **Features**: Message routing, transformation, persistence
 - **Examples**: Apache Kafka, Apache ActiveMQ, Redis Pub/Sub
 
-### API Gateway
-- **Definition**: Entry point for all client requests to microservices
-- **Features**: Request routing, authentication, rate limiting, monitoring
-- **Benefits**: Centralized cross-cutting concerns, protocol translation
-
 ## Monitoring & Observability
 
 ### Metrics
@@ -359,3 +404,8 @@
 - **Definition**: Automated deployment, scaling, and management of containers
 - **Examples**: Kubernetes, Docker Swarm, Apache Mesos
 - **Features**: Service discovery, load balancing, auto-scaling, health management
+
+### API Gateway
+- **Definition**: Entry point for all client requests to microservices
+- **Features**: Request routing, authentication, rate limiting, monitoring
+- **Benefits**: Centralized cross-cutting concerns, protocol translation    
