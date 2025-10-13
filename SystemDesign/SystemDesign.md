@@ -64,6 +64,7 @@
     - [Feature Flags/Toggles](#feature-flagstoggles)
     - [Container Orchestration](#container-orchestration)
 - [API Gateway](#api-gateway)
+- [Consistent Hashing](#consistent-hashing)
 
 # System Design Key Categories
 - **Scalability**: Horizontal/vertical scaling, auto-scaling concepts
@@ -409,3 +410,34 @@
 - **Definition**: Entry point for all client requests to microservices
 - **Features**: Request routing, authentication, rate limiting, monitoring
 - **Benefits**: Centralized cross-cutting concerns, protocol translation    
+
+# Consistent Hashing
+- **Definition**: Technique for distributing requests across a set of nodes
+- **Benefits**: Minimizes re-distribution when nodes are added/removed
+- **Use Cases**: Distributed caching, load balancing, data partitioning
+- **Mechanism**: Maps keys to a hash ring, nodes are placed on the ring
+- **Advantages**:
+    - Reduces cache misses when nodes change
+    - Even distribution of keys across nodes
+    - Scales well with dynamic node changes 
+- **Challenges**: Requires careful design to handle node failures and rebalancing
+- **Implementation**: Often used in distributed systems like databases, caches, and load balancers
+- **Example**: Redis, Cassandra, and other distributed systems use consistent hashing to manage data distribution efficiently.
+- Architecture diagram:
+```mermaid
+graph TD;
+    A[Client Request] --> B[Hash Function];
+    B --> C[Consistent Hash Ring];
+    C --> D[Node 1];
+    C --> E[Node 2];        
+    C --> F[Node 3];
+    D --> G[Data Storage];
+    E --> G;
+    F --> G;
+    G --> H[Response to Client];
+```
+- **Example Use Case**: In a distributed cache, consistent hashing allows the system to efficiently route requests to the appropriate cache node based on the key, minimizing the need for data re-distribution when nodes are added or removed.
+# Consistent hashing is particularly useful in scenarios where the system needs to scale dynamically, such as in cloud environments or large-scale distributed applications.
+- **Example**: In a distributed cache, consistent hashing allows the system to efficiently route requests to the appropriate cache node based on the key, minimizing the need for data re-distribution when nodes are added or removed.
+- **Example Use Case**: In a distributed cache, consistent hashing allows the system to efficiently route requests to the appropriate cache node based on the key, minimizing the need for data re-distribution when nodes are added or removed.
+
