@@ -248,6 +248,30 @@ server {
 }
 ```
 
+## 8. Configure NGINX for SSL
+
+Edit your site config (e.g. `/etc/nginx/sites-available/yourdomain.com`):
+
+```
+server {
+    listen 443 ssl;
+    server_name yourdomain.com www.yourdomain.com;
+
+    ssl_certificate     /etc/ssl/certs/yourdomain.crt;
+    ssl_certificate_key /etc/ssl/private/yourdomain.key;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+```
+
+
 ## Key Configuration Directives Explained:
 
 - **weight**: Controls traffic distribution ratio
