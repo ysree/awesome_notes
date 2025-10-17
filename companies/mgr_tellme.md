@@ -4,7 +4,7 @@
 - [Architectural Decisions](#architectural-decisions)
 - [Build Trust](#build-trust)
 - [Branching Strategy](#branching-strategy)
-- [Customer escalations](#how-you-will-handle-customer-escalations)
+- [Customer escalations](#handling-customer-escalations)
 - [Career Growth of My Team Members](#career-growth-of-my-team-members)
 - [Conflicts Within Team Members](#conflicts-within-team-members)
 - [Conflicts with other Team](#managing-conflicts-with-other-team)
