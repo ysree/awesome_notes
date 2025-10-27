@@ -1,5 +1,16 @@
+# Table of Contents
+- [Implementing Cluster Autoscaling](#implementing-cluster-autoscaling)
+- [Optimizing Container Resource Requests and Limits](#optimizing-container-resource-requests-and-limits)
+- [Implementing Namespace Quotas and Limits](#implementing-namespace-quotas-and-limits)
+- [Using Vertical Pod Autoscaler](#using-vertical-pod-autoscaler)
+- [Leverage Horizontal Pod Autoscaling](#leverage-horizontal-pod-autoscaling)
+- [Optimize Storage Costs](#optimize-storage-costs)
+- [Adopt Multi-tenancy](#adopt-multi-tenancy)
+- [Implement Network Policies](#implement-network-policies) 
 
-1. Implementing Cluster Autoscaling
+
+
+# Implementing Cluster Autoscaling
 
 Cluster autoscaling is a powerful feature in Kubernetes that allows your cluster to automatically adjust the number of nodes based on the resource requirements of your workloads. This helps in optimizing resource usage and reducing costs by ensuring that you only run the number of nodes necessary to handle your current workload.
 
@@ -21,7 +32,7 @@ Cluster autoscaling is a powerful feature in Kubernetes that allows your cluster
 
 This configuration sets up a Horizontal Pod Autoscaler that automatically scales the number of replicas of the `example-application` deployment between 3 and 10 based on CPU utilization, aiming to maintain an average CPU usage of 50%.
 
-2. Optimizing Container Resource Requests and Limits
+# Optimizing Container Resource Requests and Limits
 
 Setting appropriate resource requests and limits for your containers ensures that they have the resources they need to run efficiently without over-provisioning. This helps in preventing resource contention and ensures fair resource distribution among pods.
 
@@ -43,7 +54,7 @@ Setting appropriate resource requests and limits for your containers ensures tha
 
 This configuration specifies that the container needs at least 256Mi of memory and 0.5 CPU cores to run. It also sets limits at 512Mi of memory and 1 CPU core to prevent the container from using more than its fair share of resources.
 
-3. Implementing Namespace Quotas and Limits
+# Implementing Namespace Quotas and Limits
 
 Namespace quotas and limits help manage resource usage across different teams or applications within a cluster. By setting quotas, you can prevent any single team from consuming all the resources in the cluster.
 
@@ -61,7 +72,7 @@ Namespace quotas and limits help manage resource usage across different teams or
 
 This configuration sets a resource quota for the `example-namespace`, limiting the total CPU requests to 10 cores and memory requests to 20Gi, while also capping the limits at 20 cores and 40Gi of memory.
 
-4. Using Vertical Pod Autoscaler
+# Using Vertical Pod Autoscaler
 
 The Vertical Pod Autoscaler (VPA) automatically adjusts the resource requests and limits of your pods based on their actual usage. This helps in optimizing resource allocation without manual intervention.
 
@@ -79,7 +90,7 @@ The Vertical Pod Autoscaler (VPA) automatically adjusts the resource requests an
 
 This configuration sets up a VPA for the `example-application` deployment, which will automatically adjust the resource requests and limits based on the observed usage patterns.
 
-5. Leverage Horizontal Pod Autoscaling
+# Leverage Horizontal Pod Autoscaling
 
 Horizontal Pod Autoscaling (HPA) automatically scales the number of pod replicas in a deployment based on observed CPU utilization or other select metrics. This ensures that your application can handle varying loads without manual intervention.
 
@@ -104,7 +115,7 @@ Horizontal Pod Autoscaling (HPA) automatically scales the number of pod replicas
 
 This configuration sets up an HPA for the `example-application` deployment, scaling the number of replicas between 2 and 10 based on CPU utilization, aiming to maintain an average CPU usage of 50%.
 
-6. Optimize Storage Costs
+# Optimize Storage Costs
 
 Persistent storage can be a significant part of your Kubernetes costs. By optimizing your storage strategy, such as using appropriate storage classes and dynamically provisioning storage only as needed, you can reduce costs.
 **Tips for Storage Optimization**
@@ -112,7 +123,7 @@ Persistent storage can be a significant part of your Kubernetes costs. By optimi
 - Use dynamic provisioning to automatically create storage only when it’s needed.
 - Regularly review and delete unneeded persistent volume claims (PVCs) to free up resources.
 
-7. Adopt Multi-tenancy
+# Adopt Multi-tenancy
 
 Multi-tenancy allows you to run multiple applications or teams within the same Kubernetes cluster while isolating their resources. This can lead to better resource utilization and cost savings.
 
@@ -132,7 +143,7 @@ This configuration creates two separate namespaces, `team-a` and `team-b`, allow
 - Implement role-based access control (RBAC) to ensure secure access control.
 - Use namespaces to isolate resources and manage quotas effectively.
 
-8.Implement Network Policies
+# Implement Network Policies
 
 Network policies control the traffic flow between pods, enhancing security and potentially reducing costs by limiting unnecessary network traffic. By defining clear ingress and egress rules, you can optimize network usage.
 
@@ -158,7 +169,7 @@ Network policies control the traffic flow between pods, enhancing security and p
 
 This configuration allows only pods with the label `role: backend` to communicate with pods labeled `role: frontend` on port 80, effectively controlling the traffic flow and enhancing security.
 
-9. Affinity and Node Affinity
+# Affinity and Node Affinity
 
 Affinity and node affinity rules help control where pods are scheduled within the cluster, optimizing resource usage and potentially reducing costs by ensuring that workloads are placed on the most appropriate nodes.
 
@@ -189,7 +200,7 @@ For example, you may want to schedule GPU workloads only on nodes labeled with *
 Suppose you have nodes labeled with **disktype=ssd** for high-performance storage. You want your database pods to run only on these nodes.
 
 
-10. Taints and Tolerations
+# Taints and Tolerations
 
 Taints and tolerations allow you to control which pods can be scheduled on specific nodes, helping to optimize resource usage and ensure that critical workloads are not disrupted by less important ones.
 
@@ -222,7 +233,7 @@ This configuration applies a taint to the `db-node-1`, preventing any pods from 
 **Use Case:
 Suppose you have a node group with high-performance hardware intended only for database workloads. You can taint these nodes:
 
-11. Utilize Pod Disruption Budgets (PDBs)
+# Pod Disruption Budgets (PDBs)
 
 Pod Disruption Budgets (PDBs) help ensure that a certain number of pods remain available during voluntary disruptions, such as node maintenance or scaling operations. This can help maintain application availability and prevent unnecessary costs due to downtime.
 
@@ -238,7 +249,7 @@ Pod Disruption Budgets (PDBs) help ensure that a certain number of pods remain a
 
 This configuration ensures that at least 2 pods of the `example-application` remain available during voluntary disruptions, helping to maintain application availability and reduce costs associated with downtime.
 
-12. Monitor and Analyze Resource Usage
+# Monitor and Analyze Resource Usage
 
 Regularly monitoring and analyzing resource usage is crucial for optimizing costs in Kubernetes. By using tools like Prometheus, Grafana, or Kubernetes Metrics Server, you can gain insights into resource utilization patterns and identify areas for optimization.
 
@@ -260,7 +271,7 @@ This configuration sets up a ServiceMonitor to scrape metrics from the `example-
 - Use dashboards to visualize resource utilization trends and identify optimization opportunities.
 - Regularly review and adjust resource requests and limits based on actual usage patterns.
 
-13. Use Cost Management Tools
+# Use Cost Management Tools
 
 Utilizing cost management tools can help you gain visibility into your Kubernetes spending and identify areas for optimization. Tools like Kubecost, CloudHealth, or native cloud provider cost management solutions can provide insights into resource usage and costs associated with your Kubernetes workloads.
 
@@ -278,7 +289,7 @@ This configuration sets up a cost model for the `example-cluster` in the `kubeco
 - Set budgets and alerts to monitor spending and prevent unexpected costs.
 - Use tagging and labeling to categorize resources for better cost allocation and analysis.
 
-14. Implement Efficient Logging and Monitoring
+# Implement Efficient Logging and Monitoring
 
 Efficient logging and monitoring can help you identify performance bottlenecks and optimize resource usage. By using tools like Fluentd, Elasticsearch, and Kibana (EFK stack) or Loki and Grafana, you can centralize logs and metrics for better visibility into your Kubernetes workloads.
 
@@ -302,7 +313,8 @@ This configuration sets up Fluentd to collect logs from all container logs in th
 - Use structured logging to make it easier to parse and analyze logs.
 - Implement log rotation and retention policies to manage log storage efficiently.
 - Regularly review logs and metrics to identify performance issues and optimization opportunities.
-15. Optimize Ingress and Egress Traffic
+
+# Optimize Ingress and Egress Traffic
 
 Optimizing ingress and egress traffic can help reduce costs associated with data transfer and improve application performance. By using efficient ingress controllers, caching strategies, and content delivery networks (CDNs), you can minimize data transfer costs and enhance user experience.
 
