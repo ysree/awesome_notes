@@ -1,5 +1,6 @@
 # Table of Contents
 - [Telle me about Sreenivasa Reddy](#tell-me-about-sreenivasa-reddy---professional-profile)
+- [Typical day might look like in this role:](#typical-day-might-look-like-in-this-role)
 - [Agile methodology](#agile-methodology)
 - [Architectural Decisions](#architectural-decisions)
 - [Build Trust](#build-trust)
@@ -39,57 +40,119 @@
 - [Why should we take you?](#strengths--weaknesses)
 - [Working Under Pressure](#working-under-pressure)
 - [3–5 Years where you want to see yourself](#3–5-years-where-you-want-to-see-yourself)
+- [RCE in Detailed explanation](#rce-in-detailed-explanation)
 
 
 # Tell me about Sreenivasa Reddy - Professional Profile
 
-## Overview
-
-
-# Introduction
-
-Hi, I am **Sreenivasa**. I have **18+ years of experience** . For the past 9 years workging in VMware 
----
 
 ## Current Role at VMware by Broadcom
-In my current role, I am leading engineering teams responsible for **lifecycle management of customer SDDC's** on VMware Cloud on AWS 
+I bring **18 years of experience** in software development, with deep expertise in Java, Python, and cloud-native technologies. Over the **past 9 years at VMware**, I’ve grown into a leadership role where I drive engineering excellence, service reliability, and cross-team collaboration at scale.
+
+Currently, I serve as a Senior Engineering Manager for the Orchestration Fabric platform within VMware Cloud on AWS (VMC). This is a fully managed, **“tasks-as-a-service”** orchestration platform that **runs on AWS EKS** and **powers asynchronous workflows across the VMware Cloud ecosystem**.
+
+This platform is foundational to VMC’s operations and is **used by 50+ microservices** across multiple business units. I**t supports critical use cases such as SDDC provisioning, patching, and upgrades, and consistently maintains a 99.99% SLA**.
+
+In this role, **I lead the end-to-end architecture, design, development, and operations** of the platform. I’ve driven major technical and operational improvements, including:
+
+Designing and scaling a **Kubernetes-based workflow engine, significantly improving orchestration performance, fault tolerance, and service reliability**.
+
+Leading enhancements to our **CI/CD automation using Jenkins, Groovy, and shell scripting** —reducing deployment times and improving consistency across environments.
+
+Spearheading initiatives around **observability, monitoring**, and alerting, ensuring early issue detection, faster incident resolution, and operational readiness.
+
+Driving continuous improvements in **resiliency, fault tolerance, and production stability** to meet demanding SLAs.
+
+The platform is **built using Spring Boot (Java) for core services, Python for automation and tooling, PostgreSQL for persistence, and Redis for caching**. It runs entirely on Kubernetes, allowing for high scalability, self-healing, and optimal resource utilization.
+
+Beyond the technical delivery, I focus heavily on cross-functional **collaboration—working closely with SRE, DevOps, QA, and Product teams to ensure high-quality releases**, smooth operations, and continuous improvements.
+
+This includes resource **planning, effort estimation, impact/priority/risk/dependency assessment**, and more.
+
+I also lead efforts around mentorship, documentation, and knowledge sharing—driving engineering best practices, onboarding efficiency, and technical alignment across teams.
+
+# Typical day might look like in this role:
 
 ---
 
-## Overview
-- VMware Cloud on AWS manages the lifecycle of customer SDDC, ensuring infrastructure is secure, up-to-date, and optimized for performance.
-- VMWare release a Major SDDC software versions of of ESXi, vSAN, vCenter Server, and NSX as bundle to its cusomter for every 6 months
+### ✅ **Morning: Start with Focus and Sync**
+
+* **8:30 – 9:00 AM** – **Email & Alerts Review**
+
+  * Check emails, Slack, and PagerDuty alerts for any **overnight incidents**, build failures, or customer-impacting issues.
+  * Review dashboards (Grafana, Prometheus, CloudWatch) for service health and metrics.
+
+* **9:00 – 9:30 AM** – **Team Standup / Syncs**
+
+  * Join standup with your **Orchestration Fabric team** to align on priorities, blockers, and progress.
+  * If managing multiple teams or stakeholders (e.g. SRE, DevOps), check in briefly to address urgent needs.
+
+* **9:30 – 10:30 AM** – **Tactical Reviews or Incident Follow-Ups**
+
+  * Review recent **incident RCA**, postmortems, or SRE tickets.
+  * Work with engineers to **triage critical bugs**, prioritize backlog items, or plan hotfixes if needed.
+
 ---
-1. I am a Senior Manager leading a team of 18 people.
-2. My team includes developers, testers, and DevOps engineers.
-3. They range from freshers to very senior engineers.
-4. We work on VMware Cloud on AWS, which is a managed service.
-5. Customers use it to run their Software-Defined Data Centers in the cloud.
-6. My main responsibility is to manage the end-to-end lifecycle of this service.
-7. This includes new features, ongoing maintenance, and tenant upgrades.
-8. A big part of my role is planning and executing SDDC upgrades.
-9. These upgrades happen on a fixed six-month release cycle.
-10. Upgrades are rolled out in waves to reduce customer risk.
-11. We start with VMware’s internal systems and then move to customer SDDCs.
-12. The upgrades are done in three phases to avoid workload downtime.
-18. Customers are kept informed through notifications and schedules.
-19. During these processes, my team ensures workloads continue to run.
-20. My role also involves working closely with operations and SRE teams.
-21. If issues come up, we monitor, take quick action, and fix them fast.
-22. I also coordinate with product, operations, and customer teams.
-23. I believe in collaboration and open communication across all levels.
-24. Apart from service ownership, I focus on people management
-25. By mentor junior engineers and help them grow in their careers.
-26. encourage senior engineers to take ownership of complex areas.
-27. make sure testing, automation, and CI/CD practices are followed.
-28. I also align my team’s work with product and business priorities.
-29. My goal is to provide reliable and secure services for customers.
-30. At the same time, I want to build a motivated and capable engineering team.
+
+### 🧠 **Midday: Strategy, Execution, and Collaboration**
+
+* **10:30 – 12:00 PM** – **Design, Planning, or Architecture Reviews**
+
+  * Participate in or lead **design discussions** (e.g., improvements to the Kubernetes-based workflow engine).
+  * Evaluate proposals for **new features or architecture changes**—weigh trade-offs in scalability, cost, and complexity.
+
+* **12:00 – 1:00 PM** – **Lunch + Quick Emails/Docs**
+
+  * Casual break, maybe some light reading on emerging tools or AWS/VMware updates.
+  * Approve code reviews, update Jira tickets, or refine backlog items.
+
+---
+
+### 👥 **Afternoon: Execution & Cross-Team Collaboration**
+
+* **1:00 – 2:30 PM** – **1:1s and Mentorship**
+
+  * Meet with team members for regular **1:1s**: discuss career growth, unblock technical challenges, and offer guidance.
+  * Support junior engineers or leads by **reviewing runbooks**, debugging strategies, or aligning on best practices.
+
+* **2:30 – 3:30 PM** – **Cross-Functional Meetings**
+
+  * Sync with **Product Managers**, **QA**, or **Release Management** on feature progress, timelines, or release readiness.
+  * Meet with **DevOps/SRE teams** on CI/CD improvements, observability gaps, or deployment issues.
+
+---
+
+### 🚀 **Late Afternoon: Focus Time or Leadership Tasks**
+
+* **3:30 – 5:00 PM** – **Focus Time**
+
+  * Work on strategic initiatives—like **scaling orchestration**, improving test automation, or drafting OKRs.
+  * Refine CI/CD frameworks (Jenkins pipelines, testing coverage).
+  * Collaborate on long-term roadmap planning or architectural reviews for **RCE** and **RLCM** components.
+
+* **5:00 PM Onward** – **Wrap-Up**
+
+  * Send quick updates to stakeholders or leadership.
+  * Update documentation, Jira boards, or internal status pages.
+  * Prepare agenda for next day’s standups or sprint planning.
+
+---
+
+### 🔄 Ongoing Themes Throughout the Day:
+
+* **Service ownership:** Always keeping an eye on **availability, latency, and performance**—proactive, not reactive.
+* **Technical guidance:** Supporting engineers through design choices, scalability concerns, or debugging.
+* **People leadership:** Mentorship, building trust, fostering a high-performing, collaborative team culture.
+* **Continuous improvement:** Whether it’s CI/CD speed, workflow engine resiliency, or reducing ops toil, there’s always room to iterate.
+
+---
+
+Let me know if you'd like this as a **spoken version**, **email response**, or **interview-style answer**.
 
 
-## My Team's Responsibilities
+# RCE in Detailed explanation
 
-My team is responsible for **development of lifecycle management service, maintenance, and upgrading customer SDDCs every 6 months** with minimal disruption.
+I am responsible for **development of lifecycle management service, maintenance, and upgrading customer SDDCs every 6 months** with minimal disruption.
 
 To manage this complex process, we developed two key services:
 
@@ -100,7 +163,7 @@ These services allow my team to **orchestrate the entire upgrade process**, mini
 
 When a bundle is available we notify customers to choose predefined maintenance windows. Based on customer selections, we schedule and execute upgrades in a phased manner to minimize disruption.
 
-### Key Responsibilities
+# RCE explanation
 - **Planning**: Analyze SDDC versions, dependencies, and customer environment; define upgrade waves.  
 - **Execution**: Automate upgrades with RCE and RLCM, coordinate across teams, and monitor progress.  
 - **Post-Upgrade Validation**: Ensure workloads are functioning normally, verify system stability, and capture metrics for continuous improvement.
@@ -482,7 +545,7 @@ Establish checkpoints to measure alignment with management’s goals.
 - **Mediation & Collaboration:** Facilitate a discussion between parties to find **mutually agreeable solutions**.  
 - **Clarify Roles & Expectations:** Reinforce team responsibilities, ownership, and the impact on project goals.  
 - **Document Agreements:** Summarize the resolution and next steps to ensure accountability.  
-- **Follow-Up:** Monitor the situation to ensure the conflict does not reoccur and relationships are mended.  
+- **Follow-Up:** Monitor the situation to ensure the conflict does not reoccur.
 - **Encourage Team Culture:** Promote **respect, transparency, and collaboration** to minimize future conflicts.  
 
 **Example:**  

@@ -1,6 +1,5 @@
-Got it! I'll provide you a **full working code repository structure** with all key files, each with well-commented code explaining every step.
 
-Here’s what the repo will contain:
+## Project Structure to implement
 
 ```
 private-ai-rag-bot/

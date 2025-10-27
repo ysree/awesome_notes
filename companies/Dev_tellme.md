@@ -9,18 +9,14 @@
 - [Do you have any questions for me?](#do-you-have-any-questions-for-me)
 
 # Tell me about yourself
-Perfect — here’s your **refined 20-point “Tell me about yourself”** version:
-✅ The **first 15 points** remain unchanged,
-✅ The **last 10 points (16–25)** are condensed into **5 impactful summary points**,
-making it concise, fluent, and ideal for a **3–4 minute delivery**.
 
 ---
 
-1. I have **18 years of industry experience** in software engineering and cloud platforms.
+1. I have **18 years of experience** in software development using Java, Python, and cloud-native technologies.
 
-2. For the last **9 years, I’ve been with VMware**, focusing on cloud orchestration and SaaS control plane systems.
+2. For the last **9 years, I’ve been with VMware**
 
-3. I currently serve as an **Individual Contributor (IC5)** for the **Orchestration Fabric platform** within VMware Cloud on AWS (VMC).
+3. I currently working as an **Individual Contributor (IC5)** for the **Orchestration Fabric platform** within VMware Cloud on AWS (VMC).
 
 4. Orchestration Fabric is a **fully managed “tasks-as-a-service” platform** running on AWS infrastructure.
 
@@ -28,13 +24,13 @@ making it concise, fluent, and ideal for a **3–4 minute delivery**.
 
 6. Today, the platform is used by **over 50 microservices across multiple VMware business units**.
 
-7. These services rely on us for **reliable orchestration, lifecycle automation, and high availability**.
+7. This service relies on us for **reliable orchestration, lifecycle automation, and high availability**.
 
-8. I own the **end-to-end design, architecture, development, and operationalization** of this platform.
+8. I own the **end-to-end design, architecture, development, and operations** of this platform.
 
-9. We maintain a **99.99% SLA**, as our workflows power critical operations like **SDDC provisioning, patching, and upgrades**.
+9. We maintain a **99.99% SLA**, as our workflows power critical operations like **SDDC provisioning, patching, and upgrades** over this service
 
-10. Our technology stack includes **Spring Boot (Java)** for backend services, **Python** for automation and tooling, **PostgreSQL** for persistence, and **Redis** for caching.
+10. Getting onto technology stack this service includes **Spring Boot (Java)** for backend services, **Python** for automation and tooling, **PostgreSQL** for persistence, and **Redis** for caching.
 
 11. We run services on **Kubernetes**, ensuring scalability, self-healing, and efficient resource utilization.
 
