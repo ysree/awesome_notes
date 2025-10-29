@@ -22,7 +22,7 @@
 
 5. It simplifies the **development and execution of asynchronous workflows** across the VMware Cloud ecosystem.
 
-6. Today, the platform is used by **over 50 microservices across multiple VMware business units**.
+6. Today, the platform is used by **over 15 microservices across multiple VMware business units**.
 
 7. This service relies on us for **reliable orchestration, lifecycle automation, and high availability**.
 

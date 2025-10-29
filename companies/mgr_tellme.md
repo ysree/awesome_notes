@@ -51,7 +51,7 @@ I bring **18 years of experience** in software development, with deep expertise 
 
 Currently, I serve as a Senior Engineering Manager for the Orchestration Fabric platform within VMware Cloud on AWS (VMC). This is a fully managed, **“tasks-as-a-service”** orchestration platform that **runs on AWS EKS** and **powers asynchronous workflows across the VMware Cloud ecosystem**.
 
-This platform is foundational to VMC’s operations and is **used by 50+ microservices** across multiple business units. I**t supports critical use cases such as SDDC provisioning, patching, and upgrades, and consistently maintains a 99.99% SLA**.
+This platform is foundational to VMC’s operations and is **used by 15+ microservices** across multiple business units. I**t supports critical use cases such as SDDC provisioning, patching, and upgrades, and consistently maintains a 99.99% SLA**.
 
 In this role, **I lead the end-to-end architecture, design, development, and operations** of the platform. I’ve driven major technical and operational improvements, including:
 
@@ -608,7 +608,7 @@ This approach ensures conflicts are resolved constructively, aligning with my co
     - Post-incident, facilitated a **detailed postmortem**, highlighting gaps in testing and deployment validation.
 
 - **Result:**  
-    - Root cause was **fixed and verified in under 48 hours**.  
+    - Root cause was **fixed and verified in under 4 hours**.  
     - GA release stayed **on track with zero post-release incidents**.  
     - Introduced **new code review guidelines and automated static analysis checks** to prevent similar issues in the future.
 
