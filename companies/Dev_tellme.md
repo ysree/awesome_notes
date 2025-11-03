@@ -18,7 +18,7 @@
 
 3. I currently working as an **Individual Contributor (IC5)** for the **Orchestration Fabric platform** within VMware Cloud on AWS (VMC).
 
-4. Orchestration Fabric is a **fully managed “tasks-as-a-service” platform** running on AWS infrastructure.
+4. Orchestration Fabric is a **fully managed platform** running on AWS infrastructure.
 
 5. It simplifies the **development and execution of asynchronous workflows** across the VMware Cloud ecosystem.
 
