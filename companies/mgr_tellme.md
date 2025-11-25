@@ -49,7 +49,7 @@
 ## Current Role at VMware by Broadcom
 I bring **18 years of experience** in software development, with deep expertise in Java, Python, and cloud-native technologies. Over the **past 9 years at VMware**, I’ve grown into a leadership role where I drive engineering excellence, service reliability, and cross-team collaboration at scale.
 
-Currently, I serve as a Senior Engineering Manager for the Orchestration Fabric platform within VMware Cloud on AWS (VMC). This is a fully managed, **“tasks-as-a-service”** orchestration platform that **runs on AWS EKS** and **powers asynchronous workflows across the VMware Cloud ecosystem**.
+Currently, I serve as a Senior Engineering Manager for the Orchestration Fabric platform within VMware Cloud on AWS (VMC). This is a fully managed, orchestration platform that **runs on AWS EKS** and **powers asynchronous workflows across the VMware Cloud ecosystem**.
 
 This platform is foundational to VMC’s operations and is **used by 15+ microservices** across multiple business units. I**t supports critical use cases such as SDDC provisioning, patching, and upgrades, and consistently maintains a 99.99% SLA**.
 
