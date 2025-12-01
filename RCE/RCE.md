@@ -12,7 +12,7 @@ I have used content from your RCE PDF  and the SDDC upgrade documentation.
 
 ## **1. Context: What is VMC on AWS and Why Upgrades Matter? (1 min)**
 
-I am currently working on **VMware Cloud on AWS (VMC-A)** within the **SDDC lifecycle management** area. In VMC-A, every customer SDDC consists of components like **vCenter, ESXi, vSAN, NSX**, and management appliances. These components must be regularly **upgraded every 6 months** and patched in between to fix vulnerabilities, enable new features, and maintain fleet consistency.
+I am currently working on **VMware Cloud on AWS (VMC-A)** within the **SDDC lifecycle management**. In VMC-A, every customer SDDC consists of components like **vCenter, ESXi, vSAN, NSX**, and management appliances. These components must be regularly **upgraded every 6 months** and patched in between to fix vulnerabilities, enable new features, and maintain fleet consistency.
 ➝ These upgrades happen in **waves** across thousands of SDDCs globally.
 
 To manage these complex upgrades with **zero customer involvement and minimal downtime**, VMware uses a set of internal automation services.
