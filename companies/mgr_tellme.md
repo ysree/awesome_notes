@@ -1,6 +1,5 @@
 # Table of Contents
 - [Telle me about Sreenivasa Reddy](#tell-me-about-sreenivasa-reddy---professional-profile)
-- [Typical day might look like in this role:](#typical-day-might-look-like-in-this-role)
 - [Agile methodology](#agile-methodology)
 - [Architectural Decisions](#architectural-decisions)
 - [Build Trust](#build-trust)
@@ -13,6 +12,7 @@
 - [Cross Colleaboration with Other Teams](#product-management-team---cross-colleaboration)
 - [CI/CD](#cicd-pipelines-in-my-team)
 - [Change Management Procedures to deploy code](#deploying-code-within-change-management-procedures)
+- [Day look like in this role:](#typical-day-might-look-like-in-this-role)
 - [Deploying Code Within Change Management Procedures](#deploying-code-within-change-management-procedures)
 - [Development Process My Team Follows](#development-process-my-team-follows)
 - [Deployment and Testing Schedules for RCE/RLCM](#testing-and-deployment-schedules-for-rcerlcm)
